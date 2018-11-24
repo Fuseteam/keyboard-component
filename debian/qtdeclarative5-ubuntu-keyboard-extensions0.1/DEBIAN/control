@@ -1,0 +1,14 @@
+Package: qtdeclarative5-ubuntu-keyboard-extensions0.1
+Source: ubuntu-keyboard
+Version: 0.100+15.04+ubportslocal~1543084190
+Built-For-Profiles: cross nocheck
+Architecture: armhf
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1470
+Depends: libc6 (>= 2.4), libgcc1 (>= 1:3.5), libqt5core5a (>= 5.5.0), libqt5gui5 (>= 5.0.2), libqt5qml5 (>= 5.0.2), libstdc++6 (>= 4.3.0)
+Section: libs
+Priority: optional
+Homepage: https://launchpad.net/ubuntu-keyboard
+Description: Ubuntu on-screen keyboard data files - QML plugin
+ QMl extension for the Ubuntu virtual keyboard
+Original-Maintainer: Michael Hasselmann <michaelh@openismus.com>

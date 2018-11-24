@@ -21,6 +21,9 @@ import "key_constants.js" as UI
 import "languages.js" as Languages
 
 ActionKey {
+
+	property bool isSwipeImmediate: true //maliit_input_method.swipeTrigger
+	
     label: " ";
     shifted: " ";
 
@@ -61,6 +64,7 @@ ActionKey {
         }
         onReleased: {
             if (fullScreenItem.cursorSwipe) {
+				fullScreenItem.selectionMode = false
                 fullScreenItem.timerSwipe.restart()
             } else {
                 spaceKey.currentlyPressed = false
@@ -76,6 +80,43 @@ ActionKey {
                 fullScreenItem.processSwipe(mouseX, mouseY);
             }
         }
+        
+        onDoubleClicked: {
+			fullScreenItem.selectionMode = true
+        }
     }
+    
+    SwipeArea {
+		 id: horizontalSwipe
+		 
+	    anchors.fill: parent
+	    visible: isSwipeImmediate
+	    direction: SwipeArea.Horizontal
+	    
+	    onDraggingChanged: {
+			if (isSwipeImmediate && dragging) {
+			    fullScreenItem.prevSwipePositionX = swipeArea.mouseX
+				fullScreenItem.prevSwipePositionY = swipeArea.mouseY
+		        fullScreenItem.cursorSwipe = true
+		        spaceKey.currentlyPressed = false
+		        //fullScreenItem.timerSwipe.stop()
+			}
+	    }
+	
+	    onTouchPositionChanged: {
+			if (isSwipeImmediate && fullScreenItem.cursorSwipe) {
+			   fullScreenItem.processSwipe(touchPosition.x, touchPosition.y);
+			}
+	    }
+	
+	    onPressedChanged: {
+			if (!pressed && !dragging && isSwipeImmediate) {
+				fullScreenItem.timerSwipe.restart()
+			}else{
+				spaceKey.currentlyPressed = true
+	            fullScreenItem.timerSwipe.stop()
+			}
+	    }
+	}
 
 }

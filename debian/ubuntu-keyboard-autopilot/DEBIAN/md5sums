@@ -1,0 +1,13 @@
+f592250f951581ac5b8da533c9b52d7b  usr/lib/python3/dist-packages/ubuntu_keyboard-1.0.egg-info/PKG-INFO
+68b329da9893e34099c7d8ad5cb9c940  usr/lib/python3/dist-packages/ubuntu_keyboard-1.0.egg-info/dependency_links.txt
+2bcec144fd9f4168a4f1810077a50d22  usr/lib/python3/dist-packages/ubuntu_keyboard-1.0.egg-info/top_level.txt
+aaba96e2f944164b28162920a9413590  usr/lib/python3/dist-packages/ubuntu_keyboard/__init__.py
+43269b6e670d3f3bd57b5b81e2d6737a  usr/lib/python3/dist-packages/ubuntu_keyboard/emulators/__init__.py
+2533ec017329f47eab9f81bb051515d7  usr/lib/python3/dist-packages/ubuntu_keyboard/emulators/key.py
+b454ae71987141b202d671b8d7ff46d7  usr/lib/python3/dist-packages/ubuntu_keyboard/emulators/keyboard.py
+9a77b353b7fc1ca8bd5520c216aa6bff  usr/lib/python3/dist-packages/ubuntu_keyboard/emulators/keypad.py
+aaba96e2f944164b28162920a9413590  usr/lib/python3/dist-packages/ubuntu_keyboard/tests/__init__.py
+d0346fe4ccd8bd6ddcca7b07a13ae318  usr/lib/python3/dist-packages/ubuntu_keyboard/tests/test_keyboard.py
+fc562f8b6a0db1e399fdd376bb217c38  usr/share/applications/ubuntu-keyboard-tester.desktop
+96851721a4380e99c5c6c9b0aa1dc2c9  usr/share/doc/ubuntu-keyboard-autopilot/changelog.gz
+3f9b7512cd28d7413f3ad2f8295920d5  usr/share/doc/ubuntu-keyboard-autopilot/copyright

@@ -1,0 +1,12 @@
+Package: ubuntu-keyboard-dev
+Source: ubuntu-keyboard
+Version: 0.100+15.04+ubportslocal~1543084190
+Built-For-Profiles: cross nocheck
+Architecture: all
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 35
+Section: libs
+Priority: optional
+Homepage: https://launchpad.net/ubuntu-keyboard
+Description: Ubuntu on-screen keyboard - development files
+Original-Maintainer: Michael Hasselmann <michaelh@openismus.com>

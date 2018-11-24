@@ -1,0 +1,23 @@
+Package: ubuntu-keyboard
+Version: 0.100+15.04+ubportslocal~1543084190
+Built-For-Profiles: cross nocheck
+Architecture: armhf
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 12896
+Depends: maliit-framework (>= 0.99.0+git20130615+97e8335-0ubuntu3), qml-module-qtquick-window2, libqt5gui5 (>= 5.2.0), ubuntu-keyboard-data (>= 0.100+15.04+ubportslocal~1543084190), ubuntu-keyboard-english (>= 0.100+15.04+ubportslocal~1543084190), libc6 (>= 2.4), libgcc1 (>= 1:3.5), libgsettings-qt1 (>= 0.1+14.04.20140408), libmaliit-plugins0, libmirclient9 (>= 0.26.3+16.04.20170605), libqt5core5a (>= 5.7.0), libqt5dbus5 (>= 5.0.2), libqt5qml5 (>= 5.0.2), libqt5quick5 (>= 5.0.2), libstdc++6 (>= 4.3.0)
+Breaks: ubuntu-touch-session (<< 0.109), unity8 (<< 8.13)
+Replaces: ubuntu-touch-session (<< 0.109)
+Section: libs
+Priority: optional
+Homepage: https://launchpad.net/ubuntu-keyboard
+Description: Ubuntu on-screen keyboard
+ Ubuntu Keyboard based on Maliit-Keyboard
+ .
+ Maliit provides a flexible and cross-platform input method framework. It has a
+ plugin-based client-server architecture where applications act as clients and
+ communicate with the Maliit server via input context plugins. The communication
+ link currently uses D-Bus. Maliit is an open source framework (LGPL 2) with
+ open source plugins (BSD).
+ .
+ Ubuntu-Keyboard on-screen keyboard is a Maliit plugin.
+Original-Maintainer: Michael Hasselmann <michaelh@openismus.com>

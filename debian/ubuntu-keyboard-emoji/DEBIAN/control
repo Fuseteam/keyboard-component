@@ -1,0 +1,14 @@
+Package: ubuntu-keyboard-emoji
+Source: ubuntu-keyboard
+Version: 0.100+15.04+ubportslocal~1543084190
+Built-For-Profiles: cross nocheck
+Architecture: armhf
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 1205
+Depends: ubuntu-keyboard (= 0.100+15.04+ubportslocal~1543084190), qml-module-qtquick-localstorage, libc6 (>= 2.4), libgcc1 (>= 1:3.5), libqt5core5a (>= 5.0.2), libstdc++6 (>= 4.3.0)
+Section: libs
+Priority: optional
+Homepage: https://launchpad.net/ubuntu-keyboard
+Description: Ubuntu on-screen keyboard data files - Emoji
+ Data files for the Ubuntu virtual keyboard - Emoji
+Original-Maintainer: Michael Hasselmann <michaelh@openismus.com>

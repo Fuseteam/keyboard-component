@@ -1,0 +1,7 @@
+96851721a4380e99c5c6c9b0aa1dc2c9  usr/share/doc/ubuntu-keyboard-tests/changelog.gz
+3f9b7512cd28d7413f3ad2f8295920d5  usr/share/doc/ubuntu-keyboard-tests/copyright
+67d655c162f36e9d887badd1f994d56c  usr/share/maliit/tests/ubuntu-keyboard/keyboard-test.qml
+2a7f416a4742535abaf61a5da77976a8  usr/share/maliit/tests/ubuntu-keyboard/layout-test.qml
+1a227bbd51223b656d9f486f068453c7  usr/share/maliit/tests/ubuntu-keyboard/testlayout/Keyboard_testlayout.qml
+c2e4b999fd265b720868a22245c28a60  usr/share/maliit/tests/ubuntu-keyboard/testlayout/database_testlayout.db
+df5f33de502ac3091258f311e0da0b66  usr/share/maliit/tests/ubuntu-keyboard/testlayout/libtestlayoutplugin.so
