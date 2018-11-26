@@ -1105,11 +1105,29 @@ void AbstractTextEditor::sendKeySequence(const QString &action, const QKeySequen
 		else if (action == "SelectPreviousLine") {
 			actionSequence = QKeySequence::SelectPreviousLine;
 		}
-		else if (action == "NextChild") {
-			actionSequence = QKeySequence::NextChild;
+		else if (action == "SelectPreviousWord") {
+			actionSequence = QKeySequence::SelectPreviousWord;
 		}
-		else if (action == "PreviousChild") {
-			actionSequence = QKeySequence::PreviousChild;
+		else if (action == "SelectNextWord") {
+			actionSequence = QKeySequence::SelectNextWord;
+		}
+		else if (action == "SelectStartOfLine") {
+			actionSequence = QKeySequence::SelectStartOfLine;
+		}
+		else if (action == "SelectEndOfLine") {
+			actionSequence = QKeySequence::SelectEndOfLine;
+		}
+		else if (action == "MoveToPreviousWord") {
+			actionSequence = QKeySequence::MoveToPreviousWord;
+		}
+		else if (action == "MoveToNextWord") {
+			actionSequence = QKeySequence::MoveToNextWord;
+		}
+		else if (action == "MoveToStartOfLine") {
+			actionSequence = QKeySequence::MoveToStartOfLine;
+		}
+		else if (action == "MoveToEndOfLine") {
+			actionSequence = QKeySequence::MoveToEndOfLine;
 		}else{
 			actionSequence = QKeySequence::UnknownKey;
 		}

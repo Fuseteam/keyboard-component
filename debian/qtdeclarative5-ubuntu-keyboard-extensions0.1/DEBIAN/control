@@ -1,6 +1,6 @@
 Package: qtdeclarative5-ubuntu-keyboard-extensions0.1
 Source: ubuntu-keyboard
-Version: 0.100+15.04+ubportslocal~1543084190
+Version: 0.100+15.04+ubportslocal~1543252853
 Built-For-Profiles: cross nocheck
 Architecture: armhf
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>

@@ -28,14 +28,16 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=1
-FILE_NAME_0=2945;None;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fqml%2Fkeys%2FSpaceKey.qml;0;4
-FILE_NAME_1=11939;None;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fqml%2FKeyboard.qml;0;4
-FILE_NAME_2=13996;C++;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fsrc%2Fview%2Fabstracttexteditor.cpp;0;4
-FILE_NAME_3=3851;C++;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fsrc%2Flib%2Flogic%2Feventhandler.cpp;0;4
+current_page=0
+FILE_NAME_0=1981;None;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fqml%2Fkeys%2FSpaceKey.qml;0;4
+FILE_NAME_1=12050;None;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fqml%2FKeyboard.qml;0;4
+FILE_NAME_2=40317;C++;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fsrc%2Fview%2Fabstracttexteditor.cpp;0;4
+FILE_NAME_3=3085;C++;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fsrc%2Flib%2Flogic%2Feventhandler.cpp;0;4
+FILE_NAME_4=4948;C++;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fsrc%2Flib%2Fmodels%2Fkey.h;0;4
+FILE_NAME_5=7385;C++;0;EUTF-8;1;1;0;%2Fhome%2Fkugi_igi%2FDocuments%2FDevelopment_Projects%2FKeyboard%2Fkeyboard-component%2Fsrc%2Fview%2Fabstracttexteditor.h;0;4
 
 [VTE]
-last_dir=/home/kugi_igi
+last_dir=/home/kugi_igi/Documents/Development_Projects/Keyboard/keyboard-component
 
 [build-menu]
 EX_00_LB=_Execute

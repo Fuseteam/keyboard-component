@@ -34,7 +34,7 @@ ActionKey {
     switchBackFromSymbols: true
 
     overridePressArea: true
-
+    
     Label {
         anchors.centerIn: parent
         anchors.verticalCenterOffset: -parent.rowMargin / 2 - units.gu(0.15)
@@ -45,13 +45,17 @@ ActionKey {
         text: Languages.languageIdToName(maliit_input_method.activeLanguage)
         horizontalAlignment: Text.AlignHCenter
         visible: !panel.hideKeyLabels
+        color: UI.fontColor
     }
 
     MouseArea {
         id: swipeArea
         anchors.fill: parent
+        
+        //~ property bool dblClick: false
 
         onPressAndHold: {
+			fullScreenItem.timerSwipe.stop()
             fullScreenItem.prevSwipePositionX = mouseX
             fullScreenItem.prevSwipePositionY = mouseY
             fullScreenItem.cursorSwipe = true
@@ -79,6 +83,12 @@ ActionKey {
                 fullScreenItem.processSwipe(mouseX, mouseY);
             }
         }
+        
+        //~ onDoubleClicked: {
+			//~ dblClick = true
+			//~ fullScreenItem.selectionMode = true
+			//~ fullScreenItem.timerSwipe.restart()
+        //~ }
     }
     
     SwipeArea {
@@ -105,9 +115,12 @@ ActionKey {
 	    }
 	
 	    onPressedChanged: {
-			if (!pressed && !dragging && isSwipeImmediate) {
+			//~ if (!pressed && !dragging) {
+			if (!pressed) {
+				//fullScreenItem.selectionMode = false
 				fullScreenItem.timerSwipe.restart()
-			}else{
+			}
+			else{
 				spaceKey.currentlyPressed = true
 	            fullScreenItem.timerSwipe.stop()
 			}

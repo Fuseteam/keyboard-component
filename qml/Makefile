@@ -514,6 +514,7 @@ compiler_clean: compiler_moc_predefs_clean
 
 install_qml: first FORCE
 	@test -d $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu || mkdir -p $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu
+	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/FloatingActions.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/FloatingActions.qml
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/Keyboard.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/Keyboard.qml
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/KeyboardContainer.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/KeyboardContainer.qml
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/WordRibbon.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/WordRibbon.qml
@@ -524,12 +525,14 @@ uninstall_qml: FORCE
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/WordRibbon.qml
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/KeyboardContainer.qml
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/Keyboard.qml
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/FloatingActions.qml
 	-$(DEL_DIR) $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/ 
 
 
 install_qml_keys: first FORCE
 	@test -d $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys || mkdir -p $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/keys/ActionKey.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/ActionKey.qml
+	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/keys/AdvancedActionKey.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/AdvancedActionKey.qml
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/keys/BackspaceKey.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/BackspaceKey.qml
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/keys/CharKey.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/CharKey.qml
 	-$(QINSTALL) /home/kugi_igi/ubuntu-keyboard/qml/keys/DropShadow.qml $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/DropShadow.qml
@@ -574,6 +577,7 @@ uninstall_qml_keys: FORCE
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/DropShadow.qml
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/CharKey.qml
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/BackspaceKey.qml
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/AdvancedActionKey.qml
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/ActionKey.qml
 	-$(DEL_DIR) $(INSTALL_ROOT)/usr/share/maliit/plugins/com/ubuntu/keys/ 
 

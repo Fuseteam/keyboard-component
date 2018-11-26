@@ -1,5 +1,5 @@
-a2d9d41c4340f867a6ac6f56b7fd6b75  usr/lib/maliit/plugins/libubuntu-keyboard-plugin.so
-96851721a4380e99c5c6c9b0aa1dc2c9  usr/share/doc/ubuntu-keyboard/changelog.gz
+766b67a3a40bd02f5392d3f3a70a52c8  usr/lib/maliit/plugins/libubuntu-keyboard-plugin.so
+7d8a7d23fae42b1e4d674bae4f8e9c74  usr/share/doc/ubuntu-keyboard/changelog.gz
 3f9b7512cd28d7413f3ad2f8295920d5  usr/share/doc/ubuntu-keyboard/copyright
 fe0ad43ddde54e939b59b9c7f8f3dafc  usr/share/locale/aa/LC_MESSAGES/ubuntu-keyboard.mo
 1223640a225444c11b6d4abfb893de22  usr/share/locale/af/LC_MESSAGES/ubuntu-keyboard.mo
@@ -79,5 +79,5 @@ e5120783727a4570d1d5efbbf3dd1ed7  usr/share/locale/tg/LC_MESSAGES/ubuntu-keyboar
 e81071f65e43c38e9ed0bdfe6a5e3a9b  usr/share/locale/zh_CN/LC_MESSAGES/ubuntu-keyboard.mo
 69f5d6a6f31336023913d2d9f0b0f557  usr/share/locale/zh_HK/LC_MESSAGES/ubuntu-keyboard.mo
 1de681455a848c4a344813b5f6f8c2ed  usr/share/locale/zh_TW/LC_MESSAGES/ubuntu-keyboard.mo
-b5ab5504eae6824dd2f35a01c45b5528  usr/share/maliit/plugins/com/ubuntu/lib/libwesternsupport.a
+2acfff4d18f2aab9cfd92b57aef321b8  usr/share/maliit/plugins/com/ubuntu/lib/libwesternsupport.a
 f702bb18048fc378424ca9a39a9756c9  usr/share/upstart/sessions/maliit-server.conf
