@@ -43,13 +43,16 @@ Item {
     readonly property bool tablet: landscape ? width >= units.gu(90) : height >= units.gu(90)
 
     property bool cursorSwipe: false
+	property bool selectionMode: false
+	//~ property alias keypad: keypad
     property int prevSwipePositionX
     property int prevSwipePositionY
-    property int cursorSwipeDuration: 400
+    property int cursorSwipeDuration: 1000//400
     property var timerSwipe: swipeTimer
 
     property variant input_method: maliit_input_method
     property variant event_handler: maliit_event_handler
+    
 
     onXChanged: fullScreenItem.reportKeyboardVisibleRect();
     onYChanged: fullScreenItem.reportKeyboardVisibleRect();
@@ -154,9 +157,48 @@ Item {
 
                     height: canvas.wordribbon_visible ? (fullScreenItem.tablet ? units.gu(UI.tabletWordribbonHeight)
                                                                                : units.gu(UI.phoneWordribbonHeight))
-                                                      : 0
+                                                      : toolbar.visible ? toolbar.height : 0
                     onHeightChanged: fullScreenItem.reportKeyboardVisibleRect();
                 }
+                
+                Toolbar {
+					id: toolbar
+					visible: cursorSwipe
+					height: fullScreenItem.tablet ? units.gu(UI.tabletWordribbonHeight) : units.gu(UI.phoneWordribbonHeight)//units.gu(5)
+					
+			        anchors {
+			            left: parent.left
+			            right: parent.right
+			            //~ top: parent.top
+			            bottom: keyboardComp.top
+			        }
+			        
+			        function runCommand(command){
+						event_handler.onKeyReleased(command, "command")
+						fullScreenItem.timerSwipe.restart()
+					}
+			        
+			        // Disable clicking at the bottom
+			        MouseArea{
+						anchors.fill: parent
+						z: -1
+					}
+			        
+			        //~ theme.name: "Ubuntu.Components.Themes.SuruDark" 
+			        
+			        trailingActionBar.actions: [
+				        Action { iconName: "edit-paste"; onTriggered: toolbar.runCommand("Paste"); },
+			            Action { iconName: "edit-copy"; enabled: input_method.hasSelection; onTriggered: toolbar.runCommand("Copy"); },
+			            Action { iconName: "edit-cut"; enabled: input_method.hasSelection; onTriggered: toolbar.runCommand("Cut"); }
+			        ]
+			        leadingActionBar.numberOfSlots: 4
+			        leadingActionBar.actions: [
+				        Action { iconName: "keyboard-tab"; onTriggered: toolbar.runCommand("tab"/*String.fromCharCode(9)*/);},
+				        Action { iconName: "edit-select-all"; onTriggered: toolbar.runCommand("SelectAll"); },
+				        Action { iconName: "redo"; onTriggered: toolbar.runCommand("Redo");},
+				        Action { iconName: "undo"; onTriggered: toolbar.runCommand("Undo");}
+			        ]
+			    }
 
                 Item {
                     id: keyboardComp
@@ -180,7 +222,7 @@ Item {
                         id: borderTop
                         width: parent.width
                         anchors.top: parent.top.bottom
-                        height: wordRibbon.visible ? 0 : units.gu(UI.top_margin)
+                        height: wordRibbon.visible || toolbar.visible ? 0 : units.gu(UI.top_margin)
                     }
 
                     KeyboardContainer {
@@ -280,17 +322,31 @@ Item {
                 keypad.delayedAutoCaps = false;
             }
         }
+        
+        FloatingActions{
+			id: floatingActions
+			
+			z: 1
+			visible: fullScreenItem.cursorSwipe && !cursorSwipeArea.pressed
+		}
 
         MouseArea {
             id: cursorSwipeArea
             anchors.fill: parent
+            anchors.topMargin: toolbar.height
+            //~ anchors{
+				//~ left: parent.left
+				//~ right: parent.right
+				//~ bottom: parent.bottom
+				//~ top: toolbar.bottom
+			//~ }
             enabled: cursorSwipe
 
             Rectangle {
                 anchors.fill: parent
                 visible: parent.enabled
-                color: UI.charKeyPressedColor
-                opacity: 0.5
+                color: fullScreenItem.selectionMode ? theme.palette.normal.selection : UI.charKeyPressedColor //theme.palette.normal.foreground //UI.charKeyPressedColor
+                opacity: fullScreenItem.selectionMode ? 1 : 0.5
             }
 
             onMouseXChanged: {
@@ -301,10 +357,28 @@ Item {
                 prevSwipePositionX = mouseX
                 prevSwipePositionY = mouseY
                 fullScreenItem.timerSwipe.stop()
+                selectionTimer.stop()
             }
 
             onReleased: {
-                fullScreenItem.timerSwipe.restart()
+				if(!fullScreenItem.selectionMode){
+	                fullScreenItem.timerSwipe.restart()
+				}else{
+					swipeTimer.stop()
+					
+					if(!input_method.hasSelection){
+						selectWord()
+						fullScreenItem.selectionMode = false
+						swipeTimer.restart()
+					}else{
+						selectionTimer.restart()
+					}
+				}
+            }
+            
+            onDoubleClicked: {
+				selectionMode = true
+				swipeTimer.stop()
             }
         }
 
@@ -315,16 +389,34 @@ Item {
         interval: cursorSwipeDuration
         running: false
         onTriggered: {
-            fullScreenItem.cursorSwipe = false
-            // We only enable autocaps after cursor movement has stopped
-            if (keypad.delayedAutoCaps) {
-                keypad.activeKeypadState = "SHIFTED"
-                keypad.delayedAutoCaps = false
-            } else {
-                keypad.activeKeypadState = "NORMAL"
-            }
+            exitSwipeMode()
         }
     }
+    
+    Timer {
+        id: selectionTimer
+        interval: cursorSwipeDuration
+        running: false
+        onTriggered: {
+            exitSelectionMode()
+        }
+    }
+    
+    function exitSelectionMode(){
+		selectionMode = false
+		swipeTimer.restart()
+	}
+    
+    function exitSwipeMode(){
+		fullScreenItem.cursorSwipe = false
+		// We only enable autocaps after cursor movement has stopped
+		if (keypad.delayedAutoCaps) {
+			keypad.activeKeypadState = "SHIFTED"
+			keypad.delayedAutoCaps = false
+		} else {
+			keypad.activeKeypadState = "NORMAL"
+		}
+	}
 
     function reportKeyboardVisibleRect() {
 
@@ -368,20 +460,52 @@ Item {
     function sendEndKey() {
         event_handler.onKeyReleased("", "end");
     }
+	function selectLeft(){
+		event_handler.onKeyReleased("SelectPreviousChar", "command");
+    }
+    function selectRight(){
+		event_handler.onKeyReleased("SelectNextChar", "command");
+    }
+    function selectUp(){
+		event_handler.onKeyReleased("SelectPreviousLine", "command");
+    }
+    function selectDown(){
+		event_handler.onKeyReleased("SelectNextLine", "command");
+    }
+    function selectWord(){
+	    event_handler.onKeyReleased("MoveToPreviousWord", "command");
+		event_handler.onKeyReleased("SelectNextWord", "command");
+    }
 
     function processSwipe(positionX, positionY) {
         if (positionX < prevSwipePositionX - units.gu(1) && input_method.surroundingLeft != "") {
-            sendLeftKey();
+            if(selectionMode){
+				selectLeft();
+		    }else{
+            	sendLeftKey();
+		    }
             prevSwipePositionX = positionX
         } else if (positionX > prevSwipePositionX + units.gu(1) && input_method.surroundingRight != "") {
-            sendRightKey();
+            if(selectionMode){
+				selectRight();
+		    }else{
+            	sendRightKey();
+		    }
             prevSwipePositionX = positionX
         }
         if (positionY < prevSwipePositionY - units.gu(4)) {
-            sendUpKey();
+            if(selectionMode){
+				selectUp();
+		    }else{
+            	sendUpKey();
+		    }
             prevSwipePositionY = positionY
         } else if (positionY > prevSwipePositionY + units.gu(4)) {
-            sendDownKey();
+            if(selectionMode){
+				selectDown();
+		    }else{
+            	sendDownKey();
+		    }
             prevSwipePositionY = positionY
         }
     }
