@@ -10,6 +10,7 @@ SUBDIRS = \
     cs \
     da \
     de \
+    de@flick \
     emoji \
     el \
     en \
