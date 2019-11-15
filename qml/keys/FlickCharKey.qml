@@ -31,6 +31,8 @@ Item {
 
     /* to be set in keyboard layouts */
     property string label: "";
+    property string toplabel: "";
+    property string botlabel: "";
     property var leaves: ["", "", "", "", ""];
     property var charlabel: ["", "", "", "", ""];
     property int index: keyFlickArea.index;
@@ -134,13 +136,25 @@ Item {
             Column {
                 spacing: units.gu( UI.annotationsMargins )
                 anchors.centerIn: parent
+		Text {
+                    id: topLabel
+                    text: (panel.hideKeyLabels)?"":(toplabel!=""?toplabel:charlabel[2])
+                    anchors.right: (labelright)?parent.right:"";
+                    anchors.left: (labelleft)?parent.left:"";
+                    anchors.horizontalCenter: (labelleft||labelright)?"":parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize:fontSize
+                    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+                }
                 Text {
                     id: keyLabel
-                    text: (panel.hideKeyLabels)?"":label
+                    text: (panel.hideKeyLabels)?"":(label!=""?label:charlabel[1]+charlabel[4]+botlabel+charlabel[3])
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: UI.fontFamily
                     font.pixelSize: fontSize
-                    font.weight: Font.Light
+		    font.weight: Font.Light
                     color: fullScreenItem.theme.fontColor
                     textFormat: Text.StyledText
                     visible: label!=""
@@ -159,197 +173,35 @@ Item {
                 }
             }
 
-            RowLayout {
-                id: tapLeftTopCol
+                Text {
+                    id: annotationLabel
+                    text: (panel.hideKeyLabels)?"":annotation
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.bottomMargin: units.gu( UI.annotationMargins )
+                    font.family: UI.fontFamily
+                    font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.fontColor
+                    textFormat: Text.StyledText
+		    visible: annotation != ""
+                }
+            }
+	    Column {
+                spacing: units.gu( UI.annotationMargins )
                 anchors.left: parent.left
-                spacing: 0
-
-                ColumnLayout {
-                    id: tapColumn
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/3
-                    Layout.alignment : Qt.AlignTop
-                    spacing: 0
-
-		    Icon {
-			    id: iconImage
-			    source: iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
-									 : ""
-			    color: fullScreenItem.theme.selectionColor
-			    anchors.horizontalCenter: parent.horizontalCenter
-			    visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[0]}
-			}
-
-                    Text {
-                        id: tapLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[0]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize: fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.selectionColor
-                        textFormat: Text.StyledText
-			visible: !iconImage.visible
-                    }
+		 Text {
+                    id: tapLabel
+                    text: (panel.hideKeyLabels)?"":charlabel[0]
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    font.family: UI.fontFamily
+                    font.pixelSize: fontSize
+		    font.weight: Font.Light
+                    color: fullScreenItem.theme.selectionColor
+                    textFormat: Text.StyledText
                 }
 
-                ColumnLayout {
-                    id: leftColumn
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                    Layout.preferredHeight: buttonRect.height
-                    spacing: 0
+		}
 
-		    Icon {
-			    id: iconImageLeft
-			    source: iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
-			    visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[1]}
-		    }
-
-                    Text {
-                        id: middleLeftLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[1]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-			visible: !iconImageLeft.visible
-                    }
-                }
-                Text{
-                     id: annotationLabel
-                     text: (panel.hideKeyLabels)?"":annotation
-                     anchors.horizontalCenter: parent.horizontalCenter
-                     anchors.bottomMargin: units.gu( UI.annotationMargins )
-                     font.family: UI.fontFamily
-                     font.pixelSize:  fullScreenItem.tablet ? units.dp(UI.tabletAnnotationFontSize) : units.dp(UI.phoneAnnotationFontSize)
-                     font.weight: Font.Light
-                     color: fullScreenItem.theme.fontColor
-                     textFormat: Text.StyledText
-                     visible: annotation != ""
-                }
-            }
-
-                ColumnLayout {
-                  id: topColumn
-                  Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                  Layout.alignment : Qt.AlignTop
-                  spacing: 0
-
-		    Icon {
-			    id: iconImageUp
-			    source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
-
-			    visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[2]}
-		    }
-
-                  Text {
-                      id: topCenterLabel
-                      text: (panel.hideKeyLabels)?"":charlabel[2]
-                      anchors.horizontalCenter: parent.horizontalCenter
-                      horizontalAlignment: Text.AlignHCenter
-                      font.family: UI.fontFamily
-                      font.pixelSize:fontSize
-                      font.weight: Font.Light
-                      color: fullScreenItem.theme.fontColor
-                      textFormat: Text.StyledText
-		      visible: !iconImageUp.visible
-                  }
-                }
-            }
-
-            RowLayout {
-                id: bottomRightCol
-                anchors.right: parent.right
-                spacing: 0
-
-                ColumnLayout {
-                    id: bottomColumn
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                    Layout.alignment : Qt.AlignBottom
-                    spacing: 0
-
-		    Icon {
-			    id: iconImageDown
-			    source: iconNormal[4] ? "image://theme/%1".arg(iconNormal[4])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
-			    anchors.bottom: parent.bottom
-			    anchors.bottomMargin: units.gu(0.25)
-			    visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[4]}
-		    }
-
-                    Text {
-                        id: bottomCenterLabel
-                        text:  (panel.hideKeyLabels)?"":charlabel[4]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        anchors.bottom: parent.bottom
-                        anchors.bottomMargin: units.gu(0.25)
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-			visible: !iconImageDown.visible
-                    }
-                }
-
-                ColumnLayout {
-                    id: rightColumn
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
-                    Layout.preferredHeight: buttonRect.height
-                    spacing: 0
-
-		    Icon {
-			id: iconImageRight
-			source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
-									 : ""
-			color: key.colorNormal
-			anchors.horizontalCenter: parent.horizontalCenter
-			visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
-			width: iconSize
-			height: iconSize
-		        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[3]}
-		    }
-
-                    Text {
-                        id: middleRightLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[3]
-                        anchors.horizontalCenter: parent.horizontalCenter
-                        horizontalAlignment: Text.AlignHCenter
-                        font.family: UI.fontFamily
-                        font.pixelSize:fontSize
-                        font.weight: Font.Light
-                        color: fullScreenItem.theme.fontColor
-                        textFormat: Text.StyledText
-			visible: !iconImageRight.visible
-                    }
-                }
-            }
         }
 
         FlickPop {

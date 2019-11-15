@@ -22,10 +22,12 @@ import Ubuntu.Components.Popups 1.3
 import "key_constants.js" as UI
 
 FlickCharKey {
-    iconNormal:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-disabled", "", "keyboard-caps-locked"]
-    iconShifted:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-enabled", "", "keyboard-caps-locked"]
-    iconCapsLock:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-locked", "", "keyboard-caps-disabled"]
-    iconAngles:["","","","","180"]
+    padding: UI.actionKeyPadding
+    toplabel:kana.label
+    botlabel:kana.annotation
+    charlabel: ["↵", "␣", "", "", ""]
+    leaves: kana.state=="caps"?["↵", "␣", "", ""/*"⎄"*/, "ⓐ"]:["↵", "␣", "Ⓐ", "", ""]
+
     overridePressArea: true
 
     property string preedit: maliit_input_method.preedit
@@ -40,11 +42,15 @@ FlickCharKey {
         id: kana
 
         state: parent.default_state;
+	property string label: "";
+	property string annotation:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
+                    label: "<font color=\"transparent\">Ⓐ</font>";
+		    annotation:"ⓐ";
                     state: "caps";
               }
             },
@@ -52,6 +58,8 @@ FlickCharKey {
                 name: "qertyu"
                 PropertyChanges {
                     target: kana;
+                    label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
+		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
             }
