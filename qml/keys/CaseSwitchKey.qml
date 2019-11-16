@@ -21,9 +21,7 @@ import Ubuntu.Components.Popups 1.3
 
 import "key_constants.js" as UI
 
-FlickActionKey {
-    iconSourceNormal:kana.icon
-    iconSourceShifted:kana.icon 
+FlickCharKey {
     padding: UI.actionKeyPadding
     toplabel:kana.label
     botlabel:kana.annotation
@@ -46,14 +44,12 @@ FlickActionKey {
         state: parent.default_state;
 	property string label: "";
 	property string annotation:"";
-	property string icon:"";
    	states: [
             State {
                 name: "caps"
                 PropertyChanges {
                     target: kana;
                     label: "<font color=\"transparent\">Ⓐ</font>";
-		    icon:"../images/keyboard-caps-locked.svg"
 		    annotation:"ⓐ";
                     state: "caps";
               }
@@ -63,7 +59,6 @@ FlickActionKey {
                 PropertyChanges {
                     target: kana;
                     label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
-		    icon:"../images/keyboard-caps-disabled.svg"
 		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
