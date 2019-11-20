@@ -880,7 +880,10 @@ void AbstractTextEditor::commitPreedit()
     if (not d->valid() || d->text->preedit().isEmpty()) {
         return;
     }
-
+    
+    if(not d->auto_correct_enabled){
+        d->text->appendToPreedit("  ");
+    }
     sendCommitString(d->text->preedit());
     d->text->commitPreedit();
     d->word_engine->clearCandidates();
