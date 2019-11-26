@@ -48,6 +48,7 @@ FlickActionKey {
         state: parent.default_state;
 	property string label: "";
 	property string annotation:"";
+
 	property string icon:"";
 	property string iconUp:"";
 	property string iconDown:"";
@@ -59,12 +60,12 @@ FlickActionKey {
                 PropertyChanges {
                     target: kana;
                     label: "<font color=\"transparent\">Ⓐ</font>";
-		    iconUp:"../images/keyboard-caps-locked.svg"
-		    iconDown:"../images/keyboard-caps-disabled.svg"
-		    iconLeft:"../images/keyboard-caps-disabled.svg"
-		    iconRight:"../images/keyboard-caps-disabled.svg"
-		    icon:"../images/keyboard-caps-disabled.svg"
-		    annotation:"ⓐ";
+                    iconUp:"../images/keyboard-caps-locked.svg"
+                    iconDown:"../images/keyboard-caps-disabled.svg"
+                    iconLeft:"../images/keyboard-caps-disabled.svg"
+                    iconRight:"../images/keyboard-caps-disabled.svg"
+                    icon:"../images/keyboard-caps-disabled.svg"
+                    annotation:"ⓐ";
                     state: "caps";
               }
             },
@@ -73,12 +74,12 @@ FlickActionKey {
                 PropertyChanges {
                     target: kana;
                     label: (panel.autoCapsTriggered)?"<font color=\"transparent\">Ⓐ</font>": "Ⓐ";
-		    iconUp:"../images/keyboard-caps-disabled.svg"
-		    iconDown:"../images/keyboard-caps-locked.svg"
-		    icon:"../images/keyboard-caps-disabled.svg"
-		    iconLeft:"../images/keyboard-caps-disabled.svg"
-		    iconRight:"../images/keyboard-caps-disabled.svg"
-		    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
+                    iconUp:"../images/keyboard-caps-disabled.svg"
+                    iconDown:"../images/keyboard-caps-locked.svg"
+                    icon:"../images/keyboard-caps-disabled.svg"
+                    iconLeft:"../images/keyboard-caps-disabled.svg"
+                    iconRight:"../images/keyboard-caps-disabled.svg"
+                    annotation:(panel.autoCapsTriggered)?"ⓐ":"<font color=\"transparent\">ⓐ</font>";
                     state: "qertyu";
                 }
             }
