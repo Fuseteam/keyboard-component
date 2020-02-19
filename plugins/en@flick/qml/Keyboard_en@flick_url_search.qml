@@ -110,8 +110,8 @@ KeyPad {
                 leaves: ["0", "'", "`", "\"", "%"]
             }
             StringKey {
-                charlabel: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                leaves: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
+                charlabel: [".", ".io", ".com", ".org",".net"];
+                leaves: [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"];
                 unstyledLeaves: [".", ".io", ".com", ".org",".net"];
         }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
