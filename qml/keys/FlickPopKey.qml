@@ -49,5 +49,7 @@ Rectangle {
 	source: "image://theme/%1".arg(parent.labelIcon)
         color: parent.labelColor
         opacity: parent.labelOpacity
+        height: fontSize
+        width: height
     }
 }

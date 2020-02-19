@@ -27,12 +27,13 @@ FlickCharKey {
     id: actionKeyRoot
     property var iconNormal: ["", "", "", "", ""];
     property var iconShifted: ["", "", "", "", ""];
-    property string iconCapsLock: ["", "", "", "", ""];
+    property var iconCapsLock: ["", "", "", "", ""];
 
     property var iconSource: ["", "", "", "", ""];
     property var iconsleaves: ["", "", "", "", ""];
     property string iconSourceCapsLock: ""
 
+    property int index: keyFlickArea.index;
     padding: UI.actionKeyPadding
     noMagnifier: true
     skipAutoCaps: true
@@ -48,6 +49,7 @@ FlickCharKey {
     property color colorNormal: fullScreenItem.theme.fontColor
     property color colorShifted: fullScreenItem.theme.fontColor
     property color colorCapsLock: fullScreenItem.theme.fontColor
+    property alias currentlyPressed: keyFlickArea.pressed
     property int fontSize: isPortrait ? buttonRect.width/4 : buttonRect.width/6
 
     // Make it possible for the visible area of the key to differ from the
@@ -196,10 +198,48 @@ FlickCharKey {
 			    icons:iconNormal
 			    //iconSources:iconsleaves
 			    index: keyFlickArea.index
-			    visible:(maliit_input_method.enableMagnifier)? actionKeyRoot.currentlyPressed && chars.length > 1:false
+			    visible:(maliit_input_method.enableMagnifier)? actionKeyRoot.currentlyPressed && icons.length > 1:false
 			}
 		    }
+	   FlickArea {
+	    id: keyFlickArea
+	    anchors.fill: actionKeyRoot
 
+	    onReleased: {
+		    if (overridePressArea) {
+			    actionKeyRoot.released();
+			    return;
+		    }
+		    event_handler.onKeyReleased(iconNormal[index], action);
+		    if(panel.autoCapsTriggered){
+			    panel.autoCapsTriggered=false;
+		    }
+
+	    }
+
+	    onPressed: {
+		    if (overridePressArea) {
+			    actionKeyRoot.pressed();
+			    return;
+		    }
+
+		    if (maliit_input_method.useAudioFeedback)
+			    audioFeedback.play();
+
+		    if (maliit_input_method.useHapticFeedback)
+			    pressEffect.start();
+
+		    event_handler.onKeyPressed(iconNormal[index], action);
+		}
+	   }
+
+    Connections {
+        target: swipeArea.drag
+        onActiveChanged: {
+            if (swipeArea.drag.active)
+                keyFlickArea.cancelPress();
+        }
+    }
 
     // make sure the icon changes even if the property icon* change on runtime
     state: panel.activeKeypadState
