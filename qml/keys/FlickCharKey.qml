@@ -57,12 +57,22 @@ Item {
     readonly property double leftOffset: buttonRect.anchors.leftMargin
     readonly property double rightOffset: buttonRect.anchors.rightMargin
 
+    /* icons */
+    property var iconNormal: ["", "", "", "", ""];
+    property var iconShifted: ["", "", "", "", ""];
+    property var iconCapsLock: ["", "", "", "", ""];
+
+    property color colorNormal: fullScreenItem.theme.fontColor
+    property color colorShifted: fullScreenItem.theme.fontColor
+    property color colorCapsLock: fullScreenItem.theme.fontColor
+
     /* design */
     property string normalColor: fullScreenItem.theme.charKeyColor
     property string pressedColor: fullScreenItem.theme.charKeyPressedColor
     property bool borderEnabled: fullScreenItem.theme.keyBorderEnabled
     property string borderColor: borderEnabled ? fullScreenItem.theme.charKeyBorderColor : "transparent"
     property int fontSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
+    property int iconSize: isPortrait ? buttonRect.width/4 : buttonRect.width/6
     property bool isPortrait: buttonRect.width/buttonRect.height > 2 ? false : true
 
     /// annotation shows a small label in the upper right corner
@@ -144,6 +154,17 @@ Item {
                     Layout.alignment : Qt.AlignTop
                     spacing: 0
 
+		    Icon {
+			    id: iconImage
+			    source: iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
+									 : ""
+			    color: fullScreenItem.theme.selectionColor
+			    anchors.horizontalCenter: parent.horizontalCenter
+			    visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
+			    width: iconSize
+			    height: iconSize
+			}
+
                     Text {
                         id: tapLabel
                         text: (panel.hideKeyLabels)?"":charlabel[0]
@@ -154,6 +175,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.selectionColor
                         textFormat: Text.StyledText
+			visible: !iconImage.visible
                     }
                 }
 
@@ -163,6 +185,17 @@ Item {
                     Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
                     Layout.preferredHeight: buttonRect.height
                     spacing: 0
+
+		    Icon {
+			    id: iconImageLeft
+			    source: iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
+									 : ""
+			    color: key.colorNormal
+			    anchors.horizontalCenter: parent.horizontalCenter
+			    visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
+			    width: iconSize
+			    height: iconSize
+		    }
 
                     Text {
                         id: middleLeftLabel
@@ -174,6 +207,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
+			visible: !iconImageLeft.visible
                     }
                 }
                 Text{
@@ -218,6 +252,7 @@ Item {
                       font.weight: Font.Light
                       color: fullScreenItem.theme.fontColor
                       textFormat: Text.StyledText
+		      visible: !iconImageUp.visible
                   }
                 }
             }
@@ -233,6 +268,20 @@ Item {
                     Layout.alignment : Qt.AlignBottom
                     spacing: 0
 
+		    Icon {
+			    id: iconImageDown
+			    source: iconNormal[4] ? "image://theme/%1".arg(iconNormal[4])
+									 : ""
+			    color: key.colorNormal
+			    anchors.horizontalCenter: parent.horizontalCenter
+			    anchors.bottom: parent.bottom
+			    anchors.bottomMargin: units.gu(0.25)
+			    visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
+			    width: iconSize
+			    height: iconSize
+			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:180}
+		    }
+
                     Text {
                         id: bottomCenterLabel
                         text:  (panel.hideKeyLabels)?"":charlabel[4]
@@ -245,6 +294,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
+			visible: !iconImageDown.visible
                     }
                 }
 
@@ -254,6 +304,17 @@ Item {
                     Layout.minimumWidth: isPortrait ? buttonRect.width/4 : buttonRect.width/6
                     Layout.preferredHeight: buttonRect.height
                     spacing: 0
+
+		    Icon {
+			id: iconImageRight
+			source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
+									 : ""
+			color: key.colorNormal
+			anchors.horizontalCenter: parent.horizontalCenter
+			visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
+			width: iconSize
+			height: iconSize
+		    }
 
                     Text {
                         id: middleRightLabel
@@ -265,18 +326,21 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
+			visible: !iconImageRight.visible
                     }
                 }
             }
         }
 
         FlickPop {
+	    id : flickPop
             anchors.horizontalCenter: buttonRect.horizontalCenter
             anchors.bottom: buttonRect.top
             anchors.bottomMargin: key.height * 0.5
             width: units.gu((UI.fontSize + UI.flickMargin) * 3)
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
             chars: leaves
+	    icons:iconNormal
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
@@ -321,4 +385,49 @@ Item {
                 keyFlickArea.cancelPress();
         }
     }
+    // make sure the icon changes even if the property icon* change on runtime
+    state: panel.activeKeypadState
+    states: [
+        State {
+            name: "caps"
+
+	    PropertyChanges {
+                target: flickPop
+		icons:iconShifted
+            }
+	    PropertyChanges {
+                target: iconImageUp
+                source: iconShifted[2] ? "image://theme/%1".arg(iconShifted[2])
+                                                               : ""
+                color: key.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageDown
+                source: iconShifted[4] ? "image://theme/%1".arg(iconShifted[4])
+                                                               : ""
+                color: key.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageLeft
+                source: iconShifted[1] ? "image://theme/%1".arg(iconShifted[1])
+                                                               : ""
+                color: key.colorShifted
+            }
+	    PropertyChanges {
+                target: iconImageRight
+                source: iconShifted[3] ? "image://theme/%1".arg(iconShifted[3])
+                                                               : ""
+                color: key.colorShifted
+            }
+        },
+        State {
+            name: "CAPSLOCK"
+            PropertyChanges {
+                target: iconImageUp
+                source: iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2])
+                                                                : ""
+                color: key.colorCapsLock
+            }
+        }
+    ]
 }
