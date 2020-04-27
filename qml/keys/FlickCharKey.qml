@@ -66,6 +66,8 @@ Item {
     property color colorShifted: fullScreenItem.theme.fontColor
     property color colorCapsLock: fullScreenItem.theme.fontColor
 
+    property var iconAngles: ["", "", "", "", ""];
+
     /* design */
     property string normalColor: fullScreenItem.theme.charKeyColor
     property string pressedColor: fullScreenItem.theme.charKeyPressedColor
@@ -163,6 +165,7 @@ Item {
 			    visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
 			    width: iconSize
 			    height: iconSize
+			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[0]}
 			}
 
                     Text {
@@ -195,6 +198,7 @@ Item {
 			    visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
 			    width: iconSize
 			    height: iconSize
+			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[1]}
 		    }
 
                     Text {
@@ -227,6 +231,7 @@ Item {
 			    visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
 			    width: iconSize
 			    height: iconSize
+			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[2]}
 		    }
 
                   Text {
@@ -266,7 +271,7 @@ Item {
 			    visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
 			    width: iconSize
 			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:180}
+			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[4]}
 		    }
 
                     Text {
@@ -301,6 +306,7 @@ Item {
 			visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
 			width: iconSize
 			height: iconSize
+		        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[3]}
 		    }
 
                     Text {
@@ -328,6 +334,7 @@ Item {
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
             chars: leaves
 	    icons:iconNormal
+	    angles:iconAngles
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
