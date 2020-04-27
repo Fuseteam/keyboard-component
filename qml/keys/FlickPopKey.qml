@@ -25,7 +25,6 @@ Rectangle {
 
     property string labelChar
     property string labelIcon
-    property string labelIconSource
     property color labelColor: fullScreenItem.theme.fontColor
     property real labelOpacity: 1.0
     property int labelAngle: 0
