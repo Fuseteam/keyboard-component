@@ -23,7 +23,8 @@ import "key_constants.js" as UI
 
 FlickCharKey {
     iconNormal:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-disabled", "", "keyboard-caps-locked"]
-    iconShifted:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-locked", "", "keyboard-caps-disabled"]
+    iconShifted:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-enabled", "", "keyboard-caps-locked"]
+    iconCapsLock:["keyboard-enter", "keyboard-spacebar", "keyboard-caps-locked", "", "keyboard-caps-disabled"]
     iconAngles:["","","","","180"]
     overridePressArea: true
 
@@ -83,6 +84,10 @@ FlickCharKey {
 	if(panel.autoCapsTriggered && index ==4){
 	    		panel.autoCapsTriggered=false;
 			kana.state = "qertyu"
+	}
+	if(panel.autoCapsTriggered && index ==2){
+			panel.autoCapsTriggered=false;
+			kana.state = "caps"
 	}
     }
 
