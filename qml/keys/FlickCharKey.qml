@@ -61,6 +61,20 @@ Item {
     property var iconNormal: ["", "", "", "", ""];
     property var iconShifted: ["", "", "", "", ""];
     property var iconCapsLock: ["", "", "", "", ""];
+    property var iconCaps: [
+			    "",
+			    iconCapsLock[1] ? "image://theme/%1".arg(iconCapsLock[1]) : "",
+			    iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2]) : "",
+			    iconCapsLock[3] ? "image://theme/%1".arg(iconCapsLock[3]) : "",
+			    iconCapsLock[4] ? "image://theme/%1".arg(iconCapsLock[4]) : ""
+		    ];
+    property var iconAutoCaps: [
+			    "",
+			    iconShifted[1] ? "image://theme/%1".arg(iconShifted[1]) : "",
+			    iconShifted[2] ? "image://theme/%1".arg(iconShifted[2]) : "",
+			    iconShifted[3] ? "image://theme/%1".arg(iconShifted[3]) : "",
+			    iconShifted[4] ? "image://theme/%1".arg(iconShifted[4]) : ""
+		    ];
 
     property color colorNormal: fullScreenItem.theme.fontColor
     property color colorShifted: fullScreenItem.theme.fontColor
@@ -393,6 +407,7 @@ Item {
         }
     }
     // make sure the icon changes even if the property icon* change on runtime
+
     state: panel.activeKeypadState
     states: [
         State {
@@ -400,40 +415,27 @@ Item {
 
 	    PropertyChanges {
                 target: flickPop
-		icons:iconShifted
+		icons: panel.autoCapsTriggered ? iconShifted : iconCapsLock
             }
 	    PropertyChanges {
                 target: iconImageUp
-                source: iconShifted[2] ? "image://theme/%1".arg(iconShifted[2])
-                                                               : ""
+                source: panel.autoCapsTriggered ? iconAutoCaps[2] : iconCaps[2]
                 color: key.colorShifted
             }
 	    PropertyChanges {
                 target: iconImageDown
-                source: iconShifted[4] ? "image://theme/%1".arg(iconShifted[4])
-                                                               : ""
+                source: panel.autoCapsTriggered ? iconAutoCaps[4] : iconCaps[4]
                 color: key.colorShifted
             }
 	    PropertyChanges {
                 target: iconImageLeft
-                source: iconShifted[1] ? "image://theme/%1".arg(iconShifted[1])
-                                                               : ""
+                source: panel.autoCapsTriggered ? iconAutoCaps[1] : iconCaps[1]
                 color: key.colorShifted
             }
 	    PropertyChanges {
                 target: iconImageRight
-                source: iconShifted[3] ? "image://theme/%1".arg(iconShifted[3])
-                                                               : ""
+                source: panel.autoCapsTriggered ? iconAutoCaps[3] : iconCaps[3]
                 color: key.colorShifted
-            }
-        },
-        State {
-            name: "CAPSLOCK"
-            PropertyChanges {
-                target: iconImageUp
-                source: iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2])
-                                                                : ""
-                color: key.colorCapsLock
             }
         }
     ]
