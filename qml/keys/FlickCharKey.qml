@@ -31,6 +31,8 @@ Item {
 
     /* to be set in keyboard layouts */
     property string label: "";
+    property string toplabel: "";
+    property string botlabel: "";
     property var leaves: ["", "", "", "", ""];
     property var charlabel: ["", "", "", "", ""];
     property int index: keyFlickArea.index;
@@ -140,8 +142,8 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.family: UI.fontFamily
                     font.pixelSize: fontSize
-                    font.weight: Font.Light
-                    color: fullScreenItem.theme.fontColor
+            		    font.weight: Font.Light
+                    color: fullScreenItem.theme.selectionColor
                     textFormat: Text.StyledText
                     visible: label!=""
                 }
@@ -170,17 +172,17 @@ Item {
                     Layout.alignment : Qt.AlignTop
                     spacing: 0
 
-		    Icon {
-			    id: iconImage
-			    source: iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
-									 : ""
-			    color: fullScreenItem.theme.selectionColor
-			    anchors.horizontalCenter: parent.horizontalCenter
-			    visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[0]}
-			}
+                      Icon {
+                        id: iconImage
+                        source: iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
+                                     : ""
+                        color: fullScreenItem.theme.selectionColor
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
+                        width: iconSize
+                        height: iconSize
+                        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[0]}
+                    }
 
                     Text {
                         id: tapLabel
@@ -192,7 +194,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.selectionColor
                         textFormat: Text.StyledText
-			visible: !iconImage.visible
+			                  visible: !iconImage.visible
                     }
                 }
 
@@ -203,17 +205,17 @@ Item {
                     Layout.preferredHeight: buttonRect.height
                     spacing: 0
 
-		    Icon {
-			    id: iconImageLeft
-			    source: iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
-			    visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[1]}
-		    }
+		                Icon {
+		              	    id: iconImageLeft
+			                  source: iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
+									                   : ""
+			                  color: key.colorNormal
+			                  anchors.horizontalCenter: parent.horizontalCenter
+			                  visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
+			                  width: iconSize
+			                  height: iconSize
+			                  transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[1]}
+		                }
 
                     Text {
                         id: middleLeftLabel
@@ -225,7 +227,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
-			visible: !iconImageLeft.visible
+			                  visible: !iconImageLeft.visible
                     }
                 }
 
@@ -235,18 +237,18 @@ Item {
                   Layout.alignment : Qt.AlignTop
                   spacing: 0
 
-		    Icon {
-			    id: iconImageUp
-			    source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
+		              Icon {
+			                id: iconImageUp
+			                source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
+									                 : ""
+			                color: key.colorNormal
+			                anchors.horizontalCenter: parent.horizontalCenter
 
-			    visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[2]}
-		    }
+			                visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
+			                width: iconSize
+			                height: iconSize
+			                transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[2]}
+		              }
 
                   Text {
                       id: topCenterLabel
@@ -258,7 +260,7 @@ Item {
                       font.weight: Font.Light
                       color: fullScreenItem.theme.fontColor
                       textFormat: Text.StyledText
-		      visible: !iconImageUp.visible
+	            	      visible: !iconImageUp.visible
                   }
                 }
             }
@@ -274,19 +276,19 @@ Item {
                     Layout.alignment : Qt.AlignBottom
                     spacing: 0
 
-		    Icon {
-			    id: iconImageDown
-			    source: iconNormal[4] ? "image://theme/%1".arg(iconNormal[4])
-									 : ""
-			    color: key.colorNormal
-			    anchors.horizontalCenter: parent.horizontalCenter
-			    anchors.bottom: parent.bottom
-			    anchors.bottomMargin: units.gu(0.25)
-			    visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
-			    width: iconSize
-			    height: iconSize
-			    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[4]}
-		    }
+                   Icon {
+                        id: iconImageDown
+                        source: iconNormal[4] ? "image://theme/%1".arg(iconNormal[4])
+                                    : ""
+                        color: key.colorNormal
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: units.gu(0.25)
+                        visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
+                        width: iconSize
+                        height: iconSize
+                        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[4]}
+                    }
 
                     Text {
                         id: bottomCenterLabel
@@ -300,7 +302,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
-			visible: !iconImageDown.visible
+		                    visible: !iconImageDown.visible
                     }
                 }
 
@@ -311,17 +313,17 @@ Item {
                     Layout.preferredHeight: buttonRect.height
                     spacing: 0
 
-		    Icon {
-			id: iconImageRight
-			source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
-									 : ""
-			color: key.colorNormal
-			anchors.horizontalCenter: parent.horizontalCenter
-			visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
-			width: iconSize
-			height: iconSize
-		        transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[3]}
-		    }
+		                Icon {
+			                  id: iconImageRight
+			                  source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
+									                   : ""
+			                  color: key.colorNormal
+			                  anchors.horizontalCenter: parent.horizontalCenter
+			                  visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
+			                  width: iconSize
+			                  height: iconSize
+		                    transform: Rotation { origin.x:iconSize/2; origin.y:iconSize/2; angle:iconAngles[3]}
+		                }
 
                     Text {
                         id: middleRightLabel
@@ -333,22 +335,22 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.fontColor
                         textFormat: Text.StyledText
-			visible: !iconImageRight.visible
+			                  visible: !iconImageRight.visible
                     }
                 }
             }
         }
 
         FlickPop {
-	    id : flickPop
+	          id : flickPop
             anchors.horizontalCenter: buttonRect.horizontalCenter
             anchors.bottom: buttonRect.top
             anchors.bottomMargin: key.height * 0.5
             width: units.gu((UI.fontSize + UI.flickMargin) * 3)
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
             chars: leaves
-	    icons:iconNormal
-	    angles:iconAngles
+	          icons:iconNormal
+	          angles:iconAngles
             index: keyFlickArea.index
             visible:(maliit_input_method.enableMagnifier)? key.currentlyPressed && chars.length > 1:false
         }
