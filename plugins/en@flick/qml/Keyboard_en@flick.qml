@@ -21,6 +21,7 @@ KeyPad {
 
     anchors.fill: parent;
     content: c1
+    symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1
 	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
@@ -30,7 +31,7 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    ActionKey    { id: enterKey; width: panel.keyWidth; visHeight:layout.height;height:layout.height;}
+	    SymbolShiftKey { id: symShiftKey; label: "äbç"; width: panel.keyWidth; visHeight:layout.height; }
 
      FlickCharKey {
                 charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
@@ -80,9 +81,9 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey {id:cursorKey; leftSide:true}
+            CursorKey { leftSide:true}
 	    FlickCharKey {
-                charlabel: layout.state == "caps" ? ["7", "]", "*", "[", "\\"] : ["7", "]", "*", "[", "\\"]
+                charlabel: ["7", "]", "*", "[", "\\"]
 		leaves: ["7", "]", "*", "[", "\\"]
             }
             FlickCharKey {
@@ -130,6 +131,6 @@ KeyPad {
 		visHeight:spaceKey.height
 		fontSize:spaceKey.height
 
-	     }
+	}
      }
 }

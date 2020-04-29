@@ -21,7 +21,7 @@ KeyPad {
 
     anchors.fill: parent;
     content: c1
-    symbols: "languages/Keyboard_accents.qml"
+    symbols: "languages/Keyboard_emoji.qml"
     Column {
         id: c1
 	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
@@ -31,19 +31,19 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    SymbolShiftKey { id: symShiftKey; label: "äbç"; width: panel.keyWidth; visHeight:layout.height; }
+	    SymbolShiftKey { id: symShiftKey; label:"abc"; width: panel.keyWidth; visHeight:layout.height; }
 
      FlickCharKey {
-                charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
-                leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
+                charlabel: layout.state == "caps" ? ["1", "À", "Â", "Á", "Ä"] : ["1", "à", "â", "á", "ä"];
+                leaves: layout.state == "caps" ? ["1", "À", "Â", "Á", "Ä"] : ["1", "à", "â", "á", "ä"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["2", "T", "Y", "U", "G"] : ["2", "t", "y", "u", "g"];
-		leaves: layout.state == "caps" ? ["2", "T", "Y", "U", "G"] : ["2", "t", "y", "u", "g"];
+                charlabel: layout.state == "caps" ? ["2", "Ù", "Û", "Ú", "Ü"] : ["2", "ù", "û", "ú", "ü"];
+		leaves: layout.state == "caps" ? ["2", "Ù", "Û", "Ú", "Ü"] : ["2", "ù", "û", "ú", "ü"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["3", "I", "O", "M", ";"] : ["3", "i", "o", "m", ";"];
-		leaves: layout.state == "caps" ? ["3", "I", "O", "M", ";"] : ["3", "i", "o", "m", ";"];
+                charlabel: layout.state == "caps" ? ["3", "Å", "Æ", "Ý", "Œ"] : ["3", "å", "æ", "ý", "œ"];
+		leaves: layout.state == "caps" ? ["3", "Å", "Æ", "Ý", "Œ"] : ["3", "å", "æ", "ý", "œ"];
             }
             CaseSwitchKey { id: layout; labelright:true}
         }
@@ -58,16 +58,16 @@ KeyPad {
                 leaves: layout.state == "caps" ? ["=", "", "!", "&", "|"] : ["=", "", "!", "&", "|"]
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
-                leaves: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
+                charlabel: layout.state == "caps" ? ["4", "È", "Ê", "É", "Ë"] : ["4", "è", "ê", "é", "ë"];
+                leaves: layout.state == "caps" ? ["4", "È", "Ê", "É", "Ë"] : ["4", "è", "ê", "é", "ë"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["5", "B", "P", "F", "N"] : ["5", "b", "p", "f", "n"];
-                leaves: layout.state == "caps" ? ["5", "B", "P", "F", "N"] : ["5", "b", "p", "f", "n"];
+                charlabel: layout.state == "caps" ? ["5", "Ì", "Î", "Í", "Ï"] : ["5", "ì", "î", "í", "ï"];
+                leaves: layout.state == "caps" ? ["5", "Ì", "Î", "Í", "Ï"] : ["5", "ì", "î", "í", "ï"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
-                leaves: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
+                charlabel: layout.state == "caps" ? ["6", "Ò", "Ô", "Ó", "Ö"] : ["6", "ò", "ô", "ó", "ö"];
+                leaves: layout.state == "caps" ? ["6", "Ò", "Ô", "Ó", "Ö"] : ["6", "ò", "ô", "ó", "ö"];
             }
             FlickCharKey {
                 charlabel: ["~", "_", "^", "", "$"]
@@ -81,18 +81,18 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey { leftSide:true}
+            CursorKey {id:cursorKey; leftSide:true}
 	    FlickCharKey {
-                charlabel: ["7", "]", "*", "[", "\\"]
-		leaves: ["7", "]", "*", "[", "\\"]
+                charlabel: ["7", "»", "–", "«", "—"]
+		leaves: ["7", "»", "–", "«", "—"]
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
-		leaves: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
+                charlabel: layout.state == "caps" ? ["8", "Ð", "Ñ", "Þ", "Ç"] : ["8", "ð", "ñ", "þ", "ç"]
+		leaves: layout.state == "caps" ? ["8", "Ð", "Ñ", "Þ", "Ç"] : ["8", "ð", "ñ", "þ", "ç"]
             }
             FlickCharKey {
-                charlabel: ["9", ")", "?", "(", "/"]
-                leaves: ["9", ")", "?", "(", "/"]
+                charlabel: ["9", "£", "€", "¥", "₹"]
+                leaves: ["9", "£", "€", "¥", "₹"]
             }
            CursorKey { rightSide:true; }
 	 }
@@ -103,18 +103,17 @@ KeyPad {
 
 	LanguageKey {  width: panel.keyWidth; visHeight:layout.height;}
             FlickCharKey {
-		 charlabel: [",", ">", "+", "&lt;", "-"]
-		 leaves: [",", ">", "+", "<", "-"]
+		 charlabel: [",", "“", "•", "”", "„"]
+		 leaves: [",", "“", "•", "”", "„"]
 	    }
 	    FlickCharKey {
-                charlabel: ["0", "'", "`", "\"", "%"]
-                leaves: ["0", "'", "`", "\"", "%"]
+                charlabel: ["0", "§", "ª", "ß", "°"]
+                leaves: ["0", "§", "ª", "ß", "°"]
             }
-            StringKey {
-                charlabel: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"] : [".", "}", "#", "{", "@"];
-                leaves: layout.state == "caps" ? [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]:[".", "}", "#", "{", "@"];
-                unstyledLeaves: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
-            }
+            FlickCharKey {
+                charlabel: [".", "¡", "‽", "¿", "⸘"]
+		leaves: [".", "¡", "‽", "¿", "⸘"]
+	    }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
 	}
 
@@ -132,6 +131,6 @@ KeyPad {
 		visHeight:spaceKey.height
 		fontSize:spaceKey.height
 
-	}
+	     }
      }
 }

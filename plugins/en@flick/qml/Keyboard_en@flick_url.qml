@@ -21,6 +21,7 @@ KeyPad {
 
     anchors.fill: parent;
     content: c1
+    symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1
 	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
@@ -30,7 +31,7 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    ActionKey    { id: enterKey; width: panel.keyWidth; visHeight:layout.height;height:layout.height;}
+	    SymbolShiftKey { id: symShiftKey; label: "äbç"; width: panel.keyWidth; visHeight:layout.height; }
 
      FlickCharKey {
                 charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
@@ -82,7 +83,7 @@ KeyPad {
 
             CursorKey { leftSide:true}
 	    FlickCharKey {
-                charlabel: layout.state == "caps" ? ["7", "}", "*", "{", "\\"] : ["7", "]", "*", "[", "\\"]
+                charlabel: ["7", "]", "*", "[", "\\"]
 		leaves: ["7", "]", "*", "[", "\\"]
             }
             FlickCharKey {
@@ -90,8 +91,8 @@ KeyPad {
 		leaves: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
             }
             FlickCharKey {
-                charlabel: layout.state=="caps"?["9", ")", "?", "(", "/"]:["9", "#", "?", "@", "/"]
-                leaves: layout.state=="caps"?["9", "#", "?", "@", "/"]:["9", "#", "?", "@", "/"]
+                charlabel: ["9", ")", "?", "(", "/"]
+                leaves: ["9", ")", "?", "(", "/"]
             }
            CursorKey { rightSide:true; }
 	 }
@@ -110,19 +111,20 @@ KeyPad {
                 leaves: ["0", "'", "`", "\"", "%"]
             }
             StringKey {
-                charlabel: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                leaves: [".", "<font size=\"6\">.io</font>", "<font size=\"6\">.com</font>", "<font size=\"6\">.org</font>","<font size=\"6\">.net</font>"];
-                unstyledLeaves: [".", ".io", ".com", ".org",".net"];
-        }
+                charlabel: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"] : [".", "}", "#", "{", "@"];
+                leaves: layout.state == "caps" ? [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]:[".", "}", "#", "{", "@"];
+                unstyledLeaves: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
+            }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
 	}
 
    } // column
-     Row{
+	Row{
 	 anchors.horizontalCenter: parent.horizontalCenter;
 	 anchors.left:parent.left
 	 anchors.bottom:parent.bottom
 	 spacing: 0
+
 	SpaceKey{
 		id: spaceKey
 		width:parent.width
