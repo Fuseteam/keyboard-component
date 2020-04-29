@@ -22,7 +22,8 @@ Item {
     state: "NORMAL"
 
     property var content: c1
-    property string symbols: "languages/Keyboard_symbols.qml"
+    property string symbols: "languages/Keyboard_symbols.qml";
+    property string emoji: "languages/Keyboard_emoji.qml";
     property bool capsLock: false
 
     Column {

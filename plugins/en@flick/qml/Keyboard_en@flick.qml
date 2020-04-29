@@ -16,6 +16,7 @@
 
 import QtQuick 2.4
 import keys 1.0
+import "../../keys/languages.js" as Languages
 
 KeyPad {
 
@@ -31,8 +32,7 @@ KeyPad {
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-	    SymbolShiftKey { id: symShiftKey; label: "äbç"; width: panel.keyWidth; visHeight:layout.height; }
-
+     ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
      FlickCharKey {
                 charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
@@ -124,13 +124,15 @@ KeyPad {
 	 anchors.bottom:parent.bottom
 	 spacing: 0
 
-	SpaceKey{
-		id: spaceKey
-		width:parent.width
-		height:layout.height-layout.height*0.5
-		visHeight:spaceKey.height
-		fontSize:spaceKey.height
+	    SymbolShiftKey {
+	        id: symShiftKey;
+	        label: Languages.languageIdToName(maliit_input_method.activeLanguage);
+		leaves: ["abc", "àþç", "", "😃", ""];
+	        width: parent.width;
+	        height:layout.height-layout.height*0.5;
+	        visHeight:height;
+		fontSize:fontSize;
+	    }
 
-	}
      }
 }
