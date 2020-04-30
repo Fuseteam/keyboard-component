@@ -216,6 +216,7 @@ KeyPad {
 	    id: symShiftKey;
 	    label: "ABC";
 	    shifted: label;
+	    height: parent.height; 
 	}
 
         CategoryKey {
