@@ -17,14 +17,27 @@
 import QtQuick 2.4
 
 import "key_constants.js" as UI
+import "languages.js" as Languages
 
-ActionKey {
-    label: "?123";
-    shifted: "?123";
-    action: "symbols";
-
+FlickActionKey {
+    iconNormal:["", "", "", "", ""]
+    iconShifted:["", "", "", "", ""]
+    iconCapsLock:["", "", "", "", ""]
+    leaves: ["?123", "", "", "😃", ""]
+    label: Languages.languageIdToName(maliit_input_method.activeLanguage)
+    leavesFontSize: 30;
     overridePressArea: true;
-
+    onReleased: {
+	    if (index == 0) {
+		    panel.state = panel.state == "CHARACTERS" ? "SYMBOLS" : "CHARACTERS";
+	    } else if (index == 1) {
+	            panel.state = panel.state == "SYMBOLS" ? "CHARACTERS" : "SYMBOLS";
+	    } else if (index == 2) {
+	            panel.state = panel.state == "SYMBOLS" ? "CHARACTERS" : "SYMBOLS";
+	    } else if (index == 3) {
+		    panel.state = panel.state == "EMOJI" ? "CHARACTERS" : "EMOJI";
+	    }
+	}
     onPressed: {
         if (maliit_input_method.useAudioFeedback)
             audioFeedback.play();
@@ -32,9 +45,5 @@ ActionKey {
         if (maliit_input_method.useHapticFeedback)
             pressEffect.start();
 
-        if (panel.state == "CHARACTERS")
-            panel.state = "SYMBOLS";
-        else
-            panel.state = "CHARACTERS";
     }
 }

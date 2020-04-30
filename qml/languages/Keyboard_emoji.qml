@@ -53,7 +53,7 @@ KeyPad {
                     chars = recentEmoji.concat(Emoji.emoji);
 
                     for (var i = 0; i < chars.length; i++) {
-                        c1.model.append({char: chars[i]});                        
+                        c1.model.append({char: chars[i]});
                     }
 
                     rs = tx.executeSql('SELECT contentX, visibleIndex FROM State');
@@ -100,7 +100,7 @@ KeyPad {
             // If the list is full remove the last emoji before inserting
             if (recentEmoji.length >= maxRecent || recentEmoji[recentEmoji.length - 1] == "") {
                 recentEmoji.splice(recentEmoji.length - 1, 1);
-            } 
+            }
 
             recentEmoji.unshift(emoji);
 
@@ -127,7 +127,7 @@ KeyPad {
                         tx.executeSql('DELETE FROM Recent ORDER BY time ASC LIMIT ?', rs.rows.item(0).totalRecent - maxRecent);
                     }
                 }
-            );     
+            );
         }
     }
 
@@ -211,9 +211,9 @@ KeyPad {
 	SymbolShiftKey {
 	    id: symShiftKey;
 	    label: "ABC";
-	    leaves: ["ABC", "", "?123", "ABC", ""];
 	    shifted: label;
-	    height: parent.height; 
+	    padding: 0;
+	    height: parent.height;
 	}
 
         CategoryKey {
@@ -226,11 +226,11 @@ KeyPad {
                     pressEffect.start();
                 internal.jumpTo(0);
             }
-        }           
- 
+        }
+
         CategoryKey {
             label: "😀"
-            highlight: (c1.midVisibleIndex >= internal.recentEmoji.length 
+            highlight: (c1.midVisibleIndex >= internal.recentEmoji.length
                         && c1.midVisibleIndex < 540 + internal.recentEmoji.length
                         && !recentCat.highlight)
                        || c1.midVisibleIndex == -1

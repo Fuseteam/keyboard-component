@@ -124,9 +124,8 @@ KeyPad {
 	 anchors.bottom:parent.bottom
 	 spacing: 0
 
-	    SymbolShiftKey {
-	        id: symShiftKey;
-	        label: Languages.languageIdToName(maliit_input_method.activeLanguage);
+	    LayoutBar {
+	        id: layoutBar;
 		leaves: ["abc", "abc", "", "😃", ""];
 	        width: parent.width;
 	        height:layout.height-layout.height*0.5;
