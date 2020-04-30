@@ -16,6 +16,7 @@
 
 import QtQuick 2.4
 import keys 1.0
+import "../../keys/languages.js" as Languages
 
 KeyPad {
 
@@ -54,7 +55,7 @@ KeyPad {
             FlickCharKey {
                 charlabel:  ["=", "", "!", "&amp;", "|"]
 		labelleft:true
-                leaves: layout.state == "caps" ? ["=", "", "!", "&", "|"] : ["=", "", "!", "&", "|"]
+                leaves: ["=", "", "!", "&", "|"]
             }
             FlickCharKey {
                 charlabel: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];

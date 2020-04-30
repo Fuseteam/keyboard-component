@@ -55,7 +55,7 @@ KeyPad {
             FlickCharKey {
                 charlabel:  ["=", "", "!", "&amp;", "|"]
 		labelleft:true
-                leaves: layout.state == "caps" ? ["=", "", "!", "&", "|"] : ["=", "", "!", "&", "|"]
+                leaves: ["=", "", "!", "&", "|"]
             }
             FlickCharKey {
                 charlabel: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
