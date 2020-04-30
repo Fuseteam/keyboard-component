@@ -23,6 +23,7 @@ FlickActionKey {
     label: "?123"
     shifted:"?123"
     leaves: ["abc", "", "?123", "😃", ""]
+    leavesFontSize: 30;
     overridePressArea: true;
     onReleased: {
 	    if (index == 0) {
