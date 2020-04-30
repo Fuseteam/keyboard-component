@@ -19,10 +19,9 @@ import QtQuick 2.4
 import "key_constants.js" as UI
 import "languages.js" as Languages
 
-FlickCharKey {
+FlickActionKey {
     label: "?123"
-    property string shifted:"?123"
-    property int visHeight: panel.keyHeight
+    shifted:"?123"
     leaves: ["abc", "", "?123", "😃", ""]
     overridePressArea: true;
     onReleased: {
