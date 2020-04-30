@@ -24,10 +24,6 @@ KeyPad {
 
     content: c1
 
-    Component.onCompleted: {
-        panel.switchBack = true;
-    }
-
     QtObject {
         id: internal
         property int offset: 0
