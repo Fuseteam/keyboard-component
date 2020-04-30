@@ -127,7 +127,7 @@ KeyPad {
 	    SymbolShiftKey {
 	        id: symShiftKey;
 	        label: Languages.languageIdToName(maliit_input_method.activeLanguage);
-		leaves: ["abc", "àþç", "", "😃", ""];
+		leaves: ["abc", "abc", "", "😃", ""];
 	        width: parent.width;
 	        height:layout.height-layout.height*0.5;
 	        visHeight:height;

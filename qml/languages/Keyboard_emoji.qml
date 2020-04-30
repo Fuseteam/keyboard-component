@@ -215,6 +215,7 @@ KeyPad {
 	SymbolShiftKey {
 	    id: symShiftKey;
 	    label: "ABC";
+	    leaves: ["ABC", "", "?123", "ABC", ""];
 	    shifted: label;
 	    height: parent.height; 
 	}
