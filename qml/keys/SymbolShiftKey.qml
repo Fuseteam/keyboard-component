@@ -27,11 +27,13 @@ FlickCharKey {
     overridePressArea: true;
     onReleased: {
 	    if (index == 0) {
-		    panel.state = "CHARACTERS";
+		    panel.state = panel.state == "CHARACTERS" ? "SYMBOLS" : "CHARACTERS";
 	    } else if (index == 1) {
 	            panel.state = panel.state == "SYMBOLS" ? "CHARACTERS" : "SYMBOLS";
+	    } else if (index == 2) {
+	            panel.state = panel.state == "SYMBOLS" ? "CHARACTERS" : "SYMBOLS";
 	    } else if (index == 3) {
-		    panel.state =  panel.state == "EMOJI" ? "CHARACTERS" : "EMOJI";
+		    panel.state = panel.state == "EMOJI" ? "CHARACTERS" : "EMOJI";
 	    }
 	}
     onPressed: {
