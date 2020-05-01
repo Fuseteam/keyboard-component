@@ -33,7 +33,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
      ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
-     FlickCharKey {
+	    FlickCharKey {
                 charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
                 leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
             }
@@ -81,7 +81,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey { leftSide:true}
+            SymbolShiftKey { id: symShiftKey; }
 	    FlickCharKey {
                 charlabel: ["7", "]", "*", "[", "\\"]
 		leaves: ["7", "]", "*", "[", "\\"]
@@ -94,7 +94,10 @@ KeyPad {
                 charlabel: ["9", ")", "?", "(", "/"]
                 leaves: ["9", ")", "?", "(", "/"]
             }
-           CursorKey { rightSide:true; }
+            EmojiKey {
+		    id: emojiKey;
+
+	    }
 	 }
 
         Row {
@@ -127,7 +130,6 @@ KeyPad {
 
 	    LayoutBar {
 	        id: layoutBar;
-		leaves: ["abc", "àþç", "", "😃", ""];
 	        width: parent.width;
 	        height:layout.height-layout.height*0.5;
 	        visHeight:height;

@@ -15,39 +15,26 @@
  */
 
 import QtQuick 2.4
-import Ubuntu.Components 1.3
 
 import "key_constants.js" as UI
-import "languages.js" as Languages
 
 ActionKey {
+    label: "👌";
+    shifted: "👌";
+    action: "symbols";
+
     overridePressArea: true;
 
-    Label {
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: -parent.rowMargin / 2 - units.gu(0.15)
-        font.family: UI.fontFamily
-        font.weight: Font.Light
-        font.pixelSize: parent.fontSize * 0.6
-        opacity: UI.spaceOpacity
-        text: Languages.languageIdToName(maliit_input_method.activeLanguage)
-        horizontalAlignment: Text.AlignHCenter
-        visible: !panel.hideKeyLabels
-    }
-
-onPressed: {
+    onPressed: {
         if (maliit_input_method.useAudioFeedback)
             audioFeedback.play();
 
         if (maliit_input_method.useHapticFeedback)
             pressEffect.start();
 
-        if (panel.state == "CHARACTERS") {
-	            panel.state =  "SYMBOLS";
-	    } else if (panel.state == "SYMBOLS") {
-	            panel.state = "EMOJI";
-	    } else if (panel.state == "EMOJI") {
-		    panel.state = "CHARACTERS";
-	    }
+        if (panel.state != "EMOJI")
+            panel.state = "EMOJI";
+        else
+            panel.state = "CHARACTERS";
     }
 }

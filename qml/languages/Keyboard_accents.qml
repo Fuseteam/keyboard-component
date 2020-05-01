@@ -81,7 +81,10 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            CursorKey {id:cursorKey; leftSide:true}
+            SymbolShiftKey { 
+	    id: symShiftKey;
+
+	    }
 	    FlickCharKey {
                 charlabel: ["7", "»", "–", "«", "—"]
 		leaves: ["7", "»", "–", "«", "—"]
@@ -94,7 +97,10 @@ KeyPad {
                 charlabel: ["9", "£", "€", "¥", "₹"]
                 leaves: ["9", "£", "€", "¥", "₹"]
             }
-           CursorKey { rightSide:true; }
+            EmojiKey { 
+	    id: emojiKey;
+
+	    }
 	 }
 
         Row {
@@ -126,7 +132,6 @@ KeyPad {
 
 	    LayoutBar {
 	        id: layoutBar;
-		leaves: ["abc", "abc", "", "😃", ""];
 	        width: parent.width;
 	        height:layout.height-layout.height*0.5;
 	        visHeight:height;
