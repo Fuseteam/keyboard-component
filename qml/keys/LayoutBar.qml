@@ -21,6 +21,7 @@ import "key_constants.js" as UI
 import "languages.js" as Languages
 
 ActionKey {
+    pressedColor: fullScreenItem.theme.actionKeyColor
     overridePressArea: true;
 
     Label {
@@ -42,12 +43,5 @@ onPressed: {
         if (maliit_input_method.useHapticFeedback)
             pressEffect.start();
 
-        if (panel.state == "CHARACTERS") {
-	            panel.state =  "SYMBOLS";
-	    } else if (panel.state == "SYMBOLS") {
-	            panel.state = "EMOJI";
-	    } else if (panel.state == "EMOJI") {
-		    panel.state = "CHARACTERS";
-	    }
     }
 }

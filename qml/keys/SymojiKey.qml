@@ -18,13 +18,22 @@ import QtQuick 2.4
 
 import "key_constants.js" as UI
 
-ActionKey {
-    label: "👌";
-    shifted: "👌";
+FlickActionKey {
+    charlabel: (panel.state == "SYMBOLS") ? ["abc", "", "", "😀", ""]:["àþç", "", "", "😀", ""]
+    leaves: (panel.state == "SYMBOLS") ? ["abc", "", "", "😀", ""]:["àþç", "", "", "😀", ""]
+    leavesFontSize: 30;
+    width: panel.keyWidth;
     action: "symbols";
 
     overridePressArea: true;
 
+    onReleased: {
+	    if (index == 0) {
+		    panel.state = (panel.state == "CHARACTERS") ? "SYMBOLS" : "CHARACTERS";
+	    } else if (index == 3) {
+		    panel.state = (panel.state == "CHARACTERS") ? "EMOJI" : "CHARACTERS";
+	    }
+    }
     onPressed: {
         if (maliit_input_method.useAudioFeedback)
             audioFeedback.play();
@@ -32,9 +41,5 @@ ActionKey {
         if (maliit_input_method.useHapticFeedback)
             pressEffect.start();
 
-        if (panel.state != "EMOJI")
-            panel.state = "EMOJI";
-        else
-            panel.state = "CHARACTERS";
     }
 }

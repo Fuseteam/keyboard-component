@@ -16,7 +16,6 @@
 
 import QtQuick 2.4
 import keys 1.0
-import "../../keys/languages.js" as Languages
 
 KeyPad {
 
@@ -81,7 +80,7 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            SymbolShiftKey { id: symShiftKey; }
+            SymojiKey { id: symojiKey;}
 	    FlickCharKey {
                 charlabel: ["7", "]", "*", "[", "\\"]
 		leaves: ["7", "]", "*", "[", "\\"]
@@ -94,10 +93,10 @@ KeyPad {
                 charlabel: ["9", ")", "?", "(", "/"]
                 leaves: ["9", ")", "?", "(", "/"]
             }
-            EmojiKey {
-		    id: emojiKey;
-
-	    }
+            FlickCharKey {
+                charlabel: ["€", "₹", "£", "", "¥"]
+                leaves: ["€", "₹", "£", "", "¥"]
+            }
 	 }
 
         Row {

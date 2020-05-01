@@ -29,4 +29,4 @@ CursorKey 1.0 CursorKey.qml
 StringKey 1.0 StringKey.qml
 CategoryKey 1.0 CategoryKey.qml
 LayoutBar 1.0 LayoutBar.qml
-EmojiKey 1.0 EmojiKey.qml
+SymojiKey 1.0 SymojiKey.qml
