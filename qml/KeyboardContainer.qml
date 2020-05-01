@@ -89,9 +89,7 @@ Item {
         property Item activeKeypad: characterKeypadLoader.item
         property string characterKeypadSource: loadLayout(maliit_input_method.contentType,
                                                           maliit_input_method.activeLanguage)
-	
-        property string symbolKeypad: activeKeypad ? activeKeypad.symbols : ""
-        property string symbolKeypadSource: panel.state == "EMOJI" ? activeKeypad.emoji : activeKeypad.symbols
+        property string symbolKeypadSource: activeKeypad ? activeKeypad.symbols : ""
 
         onCharacterKeypadSourceChanged: {
             panel.state = "CHARACTERS";
