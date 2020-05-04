@@ -48,7 +48,7 @@ Item {
         objectName: "characterKeyPadLoader"
         anchors.fill: parent
         asynchronous: false
-        source: internal.loadKeypad()
+        source: internal.loadKeypad();
         onLoaded: {
             if (delayedAutoCaps) {
                 activeKeypadState = "SHIFTED";
@@ -77,9 +77,9 @@ Item {
         State {
             name: "SYMBOLS"
         },
-	State {
-	    name: "EMOJI"
-	}
+        State {
+            name: "EMOJI"
+        }
     ]
 
     onStateChanged: {
@@ -93,20 +93,22 @@ Item {
         property Item activeKeypad: characterKeypadLoader.item
         property string characterKeypadSource: loadLayout(maliit_input_method.contentType,
                                                           maliit_input_method.activeLanguage)
+        property string symbolKeypadSource: activeKeypad ? activeKeypad.symbols : ""
+        property string emojiKeypadSource: activeKeypad ? activeKeypad.emoji : ""
 
-	onCharacterKeypadSourceChanged: {
-		panel.state = "CHARACTERS";
-	}
+        onCharacterKeypadSourceChanged: {
+            panel.state = "CHARACTERS";
+        }
 
-	function loadKeypad() {
-		if (panel.state === "CHARACTERS") {
-			return characterKeypadSource
-		}else if (panel.state === "EMOJI") {
-			return activeKeypad.emoji
-		}else {
-			return activeKeypad.symbols
-		}
-	}
+        function loadKeypad() {
+            if (panel.state === "CHARACTERS" ) {
+                return characterKeypadSource;
+            } else if (panel.state === "EMOJI") {
+                return emojiKeypadSource;
+            } else {
+                return symbolKeypadSource;
+            }
+        }
 
         function loadLayout(contentType, activeLanguage)
         {
