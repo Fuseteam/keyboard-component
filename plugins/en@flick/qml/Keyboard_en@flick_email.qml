@@ -24,25 +24,36 @@ KeyPad {
     symbols: "languages/Keyboard_accents.qml"
     Column {
         id: c1
-	property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
+        property int keyHeight: panel.keyHeight-panel.keyHeight*0.1
         anchors.fill: parent;
-	spacing: 0
+        spacing: 0
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
-     ActionKey{width:panel.keyWidth;height:layout.height;visHeight:height}
-	    FlickCharKey {
-                charlabel: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
-                leaves: layout.state == "caps" ? ["1", "Q", "E", "R", ":"] : ["1", "q", "e", "r", ":"];
+            ActionKey{
+                width:panel.keyWidth;
+                height:layout.height;
+                visHeight:height;
+                pressedColor: fullScreenItem.theme.actionKeyColor
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["2", "T", "Y", "U", "G"] : ["2", "t", "y", "u", "g"];
-		leaves: layout.state == "caps" ? ["2", "T", "Y", "U", "G"] : ["2", "t", "y", "u", "g"];
+                charlabel:["1", "q", "e", "r", ":"];
+                shiftedlabel:["1", "Q", "E", "R", ":"];
+                leaves:["1", "q", "e", "r", ":"];
+                shiftedleaves:["1", "Q", "E", "R", ":"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["3", "I", "O", "M", ";"] : ["3", "i", "o", "m", ";"];
-		leaves: layout.state == "caps" ? ["3", "I", "O", "M", ";"] : ["3", "i", "o", "m", ";"];
+                charlabel:["2", "t", "y", "u", "g"];
+                shiftedlabel:["2", "T", "Y", "U", "G"];
+                leaves:["2", "t", "y", "u", "g"];
+                shiftedleaves:["2", "T", "Y", "U", "G"];
+            }
+            FlickCharKey {
+                charlabel:["3", "i", "o", "m", ";"];
+                shiftedlabel:["3", "I", "O", "M", ";"]
+                leaves:["3", "i", "o", "m", ";"];
+                shiftedleaves:["3", "I", "O", "M", ";"];
             }
             CaseSwitchKey { id: layout; labelright:true}
         }
@@ -52,27 +63,36 @@ KeyPad {
             spacing: 0
 
             FlickCharKey {
-                charlabel:  ["=", "", "!", "&amp;", "|"]
-		labelleft:true
-                leaves: ["=", "", "!", "&", "|"]
+                charlabel:  ["#", "", "|", "&amp;", "_"]
+                shiftedlabel:charlabel
+                labelleft:true
+                leaves: ["#", "", "|", "&", "_"]
+                shiftedleaves:leaves
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
-                leaves: layout.state == "caps" ? ["4", "A", "W", "D", "S"] : ["4", "a", "w", "d", "s"];
+                charlabel:["4", "a", "w", "d", "s"];
+                shiftedlabel:["4", "A", "W", "D", "S"];
+                leaves:["4", "a", "w", "d", "s"];
+                shiftedleaves:["4", "A", "W", "D", "S"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["5", "B", "P", "F", "N"] : ["5", "b", "p", "f", "n"];
-                leaves: layout.state == "caps" ? ["5", "B", "P", "F", "N"] : ["5", "b", "p", "f", "n"];
+                charlabel:["5", "b", "p", "f", "n"];
+                shiftedlabel:["5", "B", "P", "F", "N"];
+                leaves:["5", "b", "p", "f", "n"];
+                shiftedleaves:["5", "B", "P", "F", "N"];
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
-                leaves: layout.state == "caps" ? ["6", "H", "K", "L", "J"] : ["6", "h", "k", "l", "j"];
+                charlabel:["6", "h", "k", "l", "j"];
+                shiftedlabel:["6", "H", "K", "L", "J"];
+                leaves:["6", "h", "k", "l", "j"];
+                shiftedleaves:["6", "H", "K", "L", "J"];
             }
             FlickCharKey {
-                charlabel: ["~", "_", "^", "", "$"]
-		labelright:true
-                leaves: ["~", "_", "^", "", "$"]
-
+                charlabel: ["*", "€", "^", "", "$"]
+                shiftedlabel:charlabel
+                labelright:true
+                leaves: ["*", "€", "^", "", "$"]
+                shiftedleaves:leaves
             }
         }
 
@@ -80,60 +100,74 @@ KeyPad {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-            SymojiKey { id: symojiKey;}
-	    FlickCharKey {
-                charlabel: ["7", "]", "*", "[", "\\"]
-		leaves: ["7", "]", "*", "[", "\\"]
+            CursorKey { leftSide:true; padding:0; }
+            FlickCharKey {
+                charlabel: ["7", "]", "!", "[", "\\"]
+                shiftedlabel:charlabel
+                leaves: ["7", "]", "!", "[", "\\"]
+                shiftedleaves:leaves
             }
             FlickCharKey {
-                charlabel: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
-		leaves: layout.state == "caps" ? ["8", "Z", "X", "C", "V"] : ["8", "z", "x", "c", "v"]
+                charlabel:["8", "z", "x", "c", "v"]
+                shiftedlabel:["8", "Z", "X", "C", "V"];
+                leaves:["8", "z", "x", "c", "v"]
+                shiftedleaves:["8", "Z", "X", "C", "V"];
             }
             FlickCharKey {
                 charlabel: ["9", ")", "?", "(", "/"]
+                shiftedlabel: charlabel
                 leaves: ["9", ")", "?", "(", "/"]
+                shiftedleaves:leaves
             }
             FlickCharKey {
-                charlabel: ["€", "₹", "£", "", "¥"]
-                leaves: ["€", "₹", "£", "", "¥"]
+                charlabel: ["~", "₹", "£", "", "¥"]
+                shiftedlabel:charlabel
+                leaves: ["~", "₹", "£", "", "¥"]
+                shiftedleaves:leaves
             }
-	 }
+         }
 
         Row {
             anchors.horizontalCenter: parent.horizontalCenter;
             spacing: 0
 
-	LanguageKey {  width: panel.keyWidth; visHeight:layout.height;}
+            SymojiKey { id: symojiKey;}
             FlickCharKey {
-		 charlabel: [",", ">", "+", "&lt;", "-"]
-		 leaves: [",", ">", "+", "<", "-"]
-	    }
-	    FlickCharKey {
+                 charlabel: [",", ">", "+", "&lt;", "-"]
+                 shiftedlabel:charlabel
+                 leaves: [",", ">", "+", "<", "-"]
+                 shiftedleaves:leaves
+            }
+            FlickCharKey {
                 charlabel: ["0", "'", "`", "\"", "%"]
+                shiftedlabel:charlabel
                 leaves: ["0", "'", "`", "\"", "%"]
+                shiftedleaves:leaves
             }
             StringKey {
-                charlabel: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"] : [".", "}", "#", "{", "@"];
-                leaves: layout.state == "caps" ? [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]:[".", "}", "#", "{", "@"];
+                charlabel: [".", ".io", ".com", ".org",".net"]
+                shiftedlabel: [".", "}", "#", "{", "@"];
+                leaves: [".", "<font size=\"4\">.io", "<font size=\"4\">.com</font>", "<font size=\"4\">.org</font>","<font size=\"4\">.net</font>"]
+                shiftedleaves:[".", "}", "#", "{", "@"];
                 unstyledLeaves: layout.state == "caps" ? [".", ".io", ".com", ".org",".net"]: [".", "}", "#", "{", "@"];
             }
             BackspaceKey { rightSide: true; width: panel.keyWidth;visHeight:layout.height;}
-	}
+        }
 
    } // column
-	Row{
-	 anchors.horizontalCenter: parent.horizontalCenter;
-	 anchors.left:parent.left
-	 anchors.bottom:parent.bottom
-	 spacing: 0
+        Row{
+         anchors.horizontalCenter: parent.horizontalCenter;
+         anchors.left:parent.left
+         anchors.bottom:parent.bottom
+         spacing: 0
 
-	    LayoutBar {
-	        id: layoutBar;
-	        width: parent.width;
-	        height:layout.height-layout.height*0.5;
-	        visHeight:height;
-		fontSize:fontSize;
-	    }
+            LayoutBar {
+                id: layoutBar;
+                width: parent.width;
+                height:layout.height-layout.height*0.5;
+                visHeight:height;
+                fontSize:fontSize;
+            }
 
      }
 }

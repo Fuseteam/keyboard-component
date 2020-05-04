@@ -33,6 +33,8 @@ Item {
     property string label: "";
     property var leaves: ["", "", "", "", ""];
     property var charlabel: ["", "", "", "", ""];
+    property var shiftedlabel: ["", "", "", "", ""];
+    property var shiftedleaves: ["", "", "", "", ""];
     property int index: keyFlickArea.index;
     property bool highlight: false;
 
@@ -59,17 +61,30 @@ Item {
 
     /* icons */
     property var iconNormal: ["", "", "", "", ""];
+    property var iconNormalSource: ["", "", "", "", ""];
+    property var iconCommon: [
+                            iconNormalSource[0] !== "" ? iconNormalSource[0]
+                                                       : iconNormal[0] ? "image://theme/%1".arg(iconNormal[0]) : "",
+                            iconNormalSource[1] !== "" ? iconNormalSource[1]
+                                                       : iconNormal[1] ? "image://theme/%1".arg(iconNormal[1]) : "",
+                            iconNormalSource[2] !== "" ? iconNormalSource[2]
+                                                       : iconNormal[2] ? "image://theme/%1".arg(iconNormal[2]) : "",
+                            iconNormalSource[3] !== "" ? iconNormalSource[3]
+                                                       : iconNormal[3] ? "image://theme/%1".arg(iconNormal[3]) : "",
+                            iconNormalSource[4] !== "" ? iconNormalSource[4]
+                                                       : iconNormal[4] ? "image://theme/%1".arg(iconNormal[4]) : ""
+                    ];
     property var iconShifted: ["", "", "", "", ""];
     property var iconCapsLock: ["", "", "", "", ""];
     property var iconCaps: [
-                            "",
+                            iconCapsLock[0] ? "image://theme/%1".arg(iconCapsLock[0]) : "",
                             iconCapsLock[1] ? "image://theme/%1".arg(iconCapsLock[1]) : "",
                             iconCapsLock[2] ? "image://theme/%1".arg(iconCapsLock[2]) : "",
                             iconCapsLock[3] ? "image://theme/%1".arg(iconCapsLock[3]) : "",
                             iconCapsLock[4] ? "image://theme/%1".arg(iconCapsLock[4]) : ""
                     ];
     property var iconAutoCaps: [
-                            "",
+                            iconShifted[0] ? "image://theme/%1".arg(iconShifted[0]) : "",
                             iconShifted[1] ? "image://theme/%1".arg(iconShifted[1]) : "",
                             iconShifted[2] ? "image://theme/%1".arg(iconShifted[2]) : "",
                             iconShifted[3] ? "image://theme/%1".arg(iconShifted[3]) : "",
@@ -123,7 +138,7 @@ Item {
             anchors.rightMargin: key.rightSide ? (parent.width - panel.keyWidth) + key.keyMargin : key.keyMargin
             anchors.bottomMargin: key.rowMargin
             radius: units.dp(4)
-            property int iconSize: (fullScreenItem.landscape ? (height / 2) : (height / 2.8));
+            property int iconSize: !fullScreenItem.landscape ? width/4 : width/6
             border{
                 width: borderEnabled ? units.gu(0.1) : 0
                 color: borderColor
@@ -172,11 +187,10 @@ Item {
 
                      Icon {
                         id: iconImage
-                        source: iconNormal[0] ? "image://theme/%1".arg(iconNormal[0])
-                                     : ""
+                        source: iconCommon[0]
                         color: fullScreenItem.theme.selectionColor
                         anchors.horizontalCenter: parent.horizontalCenter
-                        visible: (iconNormal[0] != "" && !panel.hideKeyLabels)
+                        visible: (iconCommon[0] != "" && !panel.hideKeyLabels)
                         width: buttonRect.iconSize
                         height: buttonRect.iconSize
                         transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[0]}
@@ -184,7 +198,7 @@ Item {
 
                     Text {
                         id: tapLabel
-                        text: (panel.hideKeyLabels)?"":charlabel[0]
+                        text: (panel.activeKeypadState === "NORMAL")?charlabel[0]:shiftedlabel[0]
                         anchors.horizontalCenter: parent.horizontalCenter
                         horizontalAlignment: Text.AlignHCenter
                         font.family: UI.fontFamily
@@ -192,7 +206,7 @@ Item {
                         font.weight: Font.Light
                         color: fullScreenItem.theme.selectionColor
                         textFormat: Text.StyledText
-                        visible: !iconImage.visible
+                        visible:!iconImageLeft.visible && !panel.hideKeyLabels
                     }
                 }
 
@@ -205,11 +219,10 @@ Item {
 
                     Icon {
                             id: iconImageLeft
-                            source: iconNormal[1] ? "image://theme/%1".arg(iconNormal[1])
-                                                                         : ""
+                            source: iconCommon[1]
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
-                            visible: (iconNormal[1] != "" && !panel.hideKeyLabels)
+                            visible: (iconCommon[1] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[1]}
@@ -217,7 +230,7 @@ Item {
 
                     Text {
                             id: middleLeftLabel
-                            text: (panel.hideKeyLabels)?"":charlabel[1]
+                            text: (panel.activeKeypadState === "NORMAL")?charlabel[1]:shiftedlabel[1]
                             anchors.horizontalCenter: parent.horizontalCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: UI.fontFamily
@@ -225,7 +238,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageLeft.visible
+                            visible: !iconImageLeft.visible && !panel.hideKeyLabels
                     }
                 }
             }
@@ -238,12 +251,11 @@ Item {
 
                   Icon {
                             id: iconImageUp
-                            source: iconNormal[2] ? "image://theme/%1".arg(iconNormal[2])
-                                                                         : ""
+                            source: iconCommon[2]
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
 
-                            visible: (iconNormal[2] != "" && !panel.hideKeyLabels)
+                            visible: (iconCommon[2] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[2]}
@@ -251,7 +263,7 @@ Item {
 
                   Text {
                             id: topCenterLabel
-                            text: (panel.hideKeyLabels)?"":charlabel[2]
+                            text: (panel.activeKeypadState === "NORMAL")?charlabel[2]:shiftedlabel[2];
                             anchors.horizontalCenter: parent.horizontalCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: UI.fontFamily
@@ -259,7 +271,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageUp.visible
+                            visible: !iconImageUp.visible && !panel.hideKeyLabels
                   }
                   Text {
                       id: keyLabel
@@ -288,13 +300,12 @@ Item {
 
                    Icon {
                             id: iconImageDown
-                            source: iconNormal[4] ? "image://theme/%1".arg(iconNormal[4])
-                                    : ""
+                            source: iconCommon[4]
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
                             anchors.bottom: parent.bottom
                             anchors.bottomMargin: units.gu(0.25)
-                            visible: (iconNormal[4] != "" && !panel.hideKeyLabels)
+                            visible: (iconCommon[4] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[4]}
@@ -302,7 +313,7 @@ Item {
 
                     Text {
                             id: bottomCenterLabel
-                            text:  (panel.hideKeyLabels)?"":charlabel[4]
+                            text:  (panel.activeKeypadState === "NORMAL")?charlabel[4]:shiftedlabel[4]
                             anchors.horizontalCenter: parent.horizontalCenter
                             horizontalAlignment: Text.AlignHCenter
                             anchors.bottom: parent.bottom
@@ -312,7 +323,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageDown.visible
+                            visible: !iconImageDown.visible && !panel.hideKeyLabels
                     }
                 }
 
@@ -325,11 +336,10 @@ Item {
 
                     Icon {
                             id: iconImageRight
-                            source: iconNormal[3] ? "image://theme/%1".arg(iconNormal[3])
-                                                                         : ""
+                            source: iconCommon[3]
                             color: key.colorNormal
                             anchors.horizontalCenter: parent.horizontalCenter
-                            visible: (iconNormal[3] != "" && !panel.hideKeyLabels)
+                            visible: (iconCommon[3] != "" && !panel.hideKeyLabels)
                             width: buttonRect.iconSize
                             height: buttonRect.iconSize
                             transform: Rotation { origin.x:buttonRect.iconSize/2; origin.y:buttonRect.iconSize/2; angle:iconAngles[3]}
@@ -337,7 +347,7 @@ Item {
 
                     Text {
                             id: middleRightLabel
-                            text: (panel.hideKeyLabels)?"":charlabel[3]
+                            text: (panel.activeKeypadState === "NORMAL")?charlabel[3]:shiftedlabel[3]
                             anchors.horizontalCenter: parent.horizontalCenter
                             horizontalAlignment: Text.AlignHCenter
                             font.family: UI.fontFamily
@@ -345,7 +355,7 @@ Item {
                             font.weight: Font.Light
                             color: fullScreenItem.theme.fontColor
                             textFormat: Text.StyledText
-                            visible: !iconImageRight.visible
+                            visible: !iconImageRight.visible && !panel.hideKeyLabels
                     }
                 }
             }
@@ -374,8 +384,8 @@ Item {
             anchors.bottomMargin: key.height * 0.5
             width: units.gu((UI.fontSize + UI.flickMargin) * 3)
             height: units.gu((UI.fontSize + UI.flickMargin) * 3)
-            chars: leaves
-            icons:iconNormal
+            chars: (panel.activeKeypadState === "NORMAL")?leaves:shiftedleaves
+            icons: iconCommon
             angles:iconAngles
             popFontSize: leavesFontSize
             index: keyFlickArea.index
@@ -392,12 +402,16 @@ Item {
                 key.released();
                 return;
             }
-          event_handler.onKeyReleased(leaves[index], action);
-       if(panel.autoCapsTriggered){
+          event_handler.onKeyReleased(flickPop.chars[index], action);
+               if(panel.autoCapsTriggered){
                        panel.autoCapsTriggered=false;
+               }else if (!skipAutoCaps) {
+                    if (panel.activeKeypadState === "SHIFTED" && panel.state === "CHARACTERS"){
+                        panel.activeKeypadState = "NORMAL";
+                        key.state = "qertyu"
+                    }
                }
-
- }
+        }
 
         onPressed: {
             if (overridePressArea) {
@@ -411,7 +425,11 @@ Item {
             if (maliit_input_method.useHapticFeedback)
                 pressEffect.start();
 
-            event_handler.onKeyPressed(leaves[index], action);
+            if(action != "backspace") {
+                panel.autoCapsTriggered = false;
+                key.state = "qertyu"
+            }
+            event_handler.onKeyPressed(flickPop.chars[index], action);
         }
     }
 
@@ -424,35 +442,70 @@ Item {
     }
     // make sure the icon changes even if the property icon* change on runtime
 
-    state: panel.activeKeypadState
-    states: [
-        State {
-            name: "caps"
-
-            PropertyChanges {
-                target: flickPop
-                icons: panel.autoCapsTriggered ? iconShifted : iconCapsLock
-            }
-            PropertyChanges {
-                target: iconImageUp
-                source: panel.autoCapsTriggered ? iconAutoCaps[2] : iconCaps[2]
-                color: key.colorShifted
-            }
-            PropertyChanges {
-                target: iconImageDown
-                source: panel.autoCapsTriggered ? iconAutoCaps[4] : iconCaps[4]
-                color: key.colorShifted
-            }
-            PropertyChanges {
-                target: iconImageLeft
-                source: panel.autoCapsTriggered ? iconAutoCaps[1] : iconCaps[1]
-                color: key.colorShifted
-            }
-            PropertyChanges {
-                target: iconImageRight
-                source: panel.autoCapsTriggered ? iconAutoCaps[3] : iconCaps[3]
-                color: key.colorShifted
-            }
-        }
-    ]
+            state: panel.activeKeypadState
+            states: [
+                State {
+                    name: "NORMAL"
+                    PropertyChanges {
+                        target: flickPop
+                        icons: iconCommon
+                    }
+                    PropertyChanges {
+                        target: iconImage
+                        source: iconCommon[0]
+                    }
+                    PropertyChanges {
+                        target: iconImageUp
+                        source: iconCommon[2]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageDown
+                        source: iconCommon[4]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageLeft
+                        source: iconCommon[1]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageRight
+                        source: iconCommon[3]
+                        color: key.colorShifted
+                    }
+                },
+                State {
+                    name: "caps"
+                    PropertyChanges {
+                        target: flickPop
+                        icons: iconAutoCaps
+                    }
+                    PropertyChanges {
+                        target: iconImage
+                        source: iconAutoCaps[0]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageUp
+                        source: iconAutoCaps[2]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageDown
+                        source:  panel.autoCapsTriggered ? iconCommon[4] : iconAutoCaps[4]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageLeft
+                        source: iconAutoCaps[1]
+                        color: key.colorShifted
+                    }
+                    PropertyChanges {
+                        target: iconImageRight
+                        source: iconAutoCaps[3]
+                        color: key.colorShifted
+                    }
+                }
+            ]
 }
