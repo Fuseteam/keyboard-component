@@ -408,7 +408,6 @@ Item {
                }else if (!skipAutoCaps) {
                     if (panel.activeKeypadState === "SHIFTED" && panel.state === "CHARACTERS"){
                         panel.activeKeypadState = "NORMAL";
-                        key.state = "qertyu"
                     }
                }
         }
@@ -427,7 +426,6 @@ Item {
 
             if(action != "backspace") {
                 panel.autoCapsTriggered = false;
-                key.state = "qertyu"
             }
             event_handler.onKeyPressed(flickPop.chars[index], action);
         }
@@ -445,38 +443,7 @@ Item {
             state: panel.activeKeypadState
             states: [
                 State {
-                    name: "NORMAL"
-                    PropertyChanges {
-                        target: flickPop
-                        icons: iconCommon
-                    }
-                    PropertyChanges {
-                        target: iconImage
-                        source: iconCommon[0]
-                    }
-                    PropertyChanges {
-                        target: iconImageUp
-                        source: iconCommon[2]
-                        color: key.colorShifted
-                    }
-                    PropertyChanges {
-                        target: iconImageDown
-                        source: iconCommon[4]
-                        color: key.colorShifted
-                    }
-                    PropertyChanges {
-                        target: iconImageLeft
-                        source: iconCommon[1]
-                        color: key.colorShifted
-                    }
-                    PropertyChanges {
-                        target: iconImageRight
-                        source: iconCommon[3]
-                        color: key.colorShifted
-                    }
-                },
-                State {
-                    name: "caps"
+                    name: "SHIFTED"
                     PropertyChanges {
                         target: flickPop
                         icons: iconAutoCaps
@@ -484,27 +451,49 @@ Item {
                     PropertyChanges {
                         target: iconImage
                         source: iconAutoCaps[0]
-                        color: key.colorShifted
                     }
                     PropertyChanges {
                         target: iconImageUp
                         source: iconAutoCaps[2]
-                        color: key.colorShifted
                     }
                     PropertyChanges {
                         target: iconImageDown
-                        source:  panel.autoCapsTriggered ? iconCommon[4] : iconAutoCaps[4]
-                        color: key.colorShifted
+                        source: iconAutoCaps[4]
                     }
                     PropertyChanges {
                         target: iconImageLeft
                         source: iconAutoCaps[1]
-                        color: key.colorShifted
                     }
                     PropertyChanges {
                         target: iconImageRight
                         source: iconAutoCaps[3]
-                        color: key.colorShifted
+                    }
+                },
+                State {
+                    name: "CAPSLOCK"
+                    PropertyChanges {
+                        target: flickPop
+                        icons: iconCaps
+                    }
+                    PropertyChanges {
+                        target: iconImage
+                        source: iconCaps[0]
+                    }
+                    PropertyChanges {
+                        target: iconImageUp
+                        source: iconCaps[2]
+                    }
+                    PropertyChanges {
+                        target: iconImageDown
+                        source: iconCaps[4]
+                    }
+                    PropertyChanges {
+                        target: iconImageLeft
+                        source: iconCaps[1]
+                    }
+                    PropertyChanges {
+                        target: iconImageRight
+                        source: iconCaps[3]
                     }
                 }
             ]
