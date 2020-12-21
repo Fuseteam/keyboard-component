@@ -20,7 +20,7 @@ TARGET          = $$qtLibraryTarget(en@flickplugin)
 EXAMPLE_FILES = englishflickplugin.json
 
 # generate database for presage:
-PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/en@flick/
+PLUGIN_INSTALL_PATH = $${UBUNTU_KEYBOARD_LIB_DIR}/en/
 
 target.path = $$PLUGIN_INSTALL_PATH
 INSTALLS += target
