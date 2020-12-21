@@ -15,7 +15,7 @@ INCLUDEPATH    += \
 HEADERS         = \
     englishflickplugin.h
 
-TARGET          = $$qtLibraryTarget(enplugin)
+TARGET          = $$qtLibraryTarget(en@flickplugin)
 
 EXAMPLE_FILES = englishflickplugin.json
 
