@@ -92,6 +92,8 @@ KeyPad {
                 labelright:true
                 leaves: charlabel
                 shiftedleaves: shiftedlabel
+                iconDisabled: ["", "", "", "keyboard-caps-locked", ""]
+                iconAngles:["","","","90",""]
             }
         }
 
@@ -123,6 +125,8 @@ KeyPad {
                 leaves: charlabel
                 shiftedlabel: charlabel
                 shiftedleaves: shiftedlabel
+                iconDisabled: ["", "", "", "keyboard-caps-locked", ""]
+                iconAngles:["","","","90",""]
             }
          }
 

@@ -36,6 +36,8 @@ KeyPad {
                 leaves: charlabel
                 shiftedlabel:symojiKey.state == "marks" ? ["Ă", "Ą", "Ȧ", "Ā", "Ǎ"] : ["Ã", "À", "Â", "Á", "Ä"];
                 shiftedleaves: shiftedlabel
+                iconDisabled: ["", "", "", "keyboard-caps-locked", ""]
+                iconAngles:["","","","90",""]
             }
             FlickCharKey {
                 charlabel: symojiKey.state == "marks" ? ["ŭ", "ų", "ṁ", "ū", "ǔ"] : ["ũ", "ù", "û", "ú", "ü"];
@@ -62,6 +64,8 @@ KeyPad {
                 leaves: charlabel
                 shiftedlabel: symojiKey.state == "marks" ? ["Ω", "", "Ɛ", "Д", "Ɵ"] : ["✿", "", "∆", "｡", "﹏"];
                 shiftedleaves: shiftedlabel
+                iconDisabled: ["", "keyboard-caps-locked", "", "", ""]
+                iconAngles:["","270","","",""]
             }
             FlickCharKey {
                 charlabel: symojiKey.state == "marks" ? ["ĕ", "ę", "ė", "ē", "ě"] : ["ẽ", "è", "ê", "é", "ë"];
@@ -87,6 +91,8 @@ KeyPad {
                 leaves: charlabel
                 shiftedlabel: symojiKey.state == "marks" ? ["Þ", "Ŋ", "Æ", "", "Œ"] : ["ʖ", "๑", " ͡", "", " ͜"];
                 shiftedleaves: shiftedlabel
+                iconDisabled: ["", "", "", "keyboard-caps-locked", ""]
+                iconAngles:["","","","90",""]
 
             }
         }
@@ -119,6 +125,8 @@ KeyPad {
                 leaves: charlabel
                 shiftedlabel: symojiKey.state == "marks" ? ["Ŧ", "Ţ", "Ṫ", "", "Ť"] : ["•", "ẙ", "·", "", "∴"];
                 shiftedleaves: shiftedlabel
+                iconDisabled: ["", "", "", "keyboard-caps-locked", ""]
+                iconAngles:["","","","90",""]
             }
          }
 
