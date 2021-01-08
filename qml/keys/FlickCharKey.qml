@@ -252,7 +252,6 @@ Item {
                             visible: !iconLeft.visible && !iconImageLeft.visible && !panel.hideKeyLabels
                     }
                 }
-            }
 
                 ColumnLayout {
                   id: topColumn
@@ -284,17 +283,6 @@ Item {
                             textFormat: Text.StyledText
                             visible: !iconImageUp.visible && !panel.hideKeyLabels
                   }
-                  Text {
-                      id: keyLabel
-                      text: (panel.hideKeyLabels)?"":label
-                      anchors.horizontalCenter: parent.horizontalCenter
-                      font.family: UI.fontFamily
-                      font.pixelSize: fontSize
-		      font.weight: Font.Light
-                      color: fullScreenItem.theme.fontColor
-                      textFormat: Text.StyledText
-                      visible: label!=""
-                   }
                 }
             }
 
@@ -390,22 +378,6 @@ Item {
                     }
                 }
             }
-	    Column {
-                spacing: units.gu( UI.annotationMargins )
-                anchors.left: parent.left
-		 Text {
-                    id: tapLabel
-                    text: (panel.hideKeyLabels)?"":charlabel[0]
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    font.family: UI.fontFamily
-                    font.pixelSize: fontSize
-		    font.weight: Font.Light
-                    color: fullScreenItem.theme.selectionColor
-                    textFormat: Text.StyledText
-                }
-
-		}
-
         }
 
         FlickPop {
