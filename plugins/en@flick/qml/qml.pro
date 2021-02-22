@@ -9,7 +9,10 @@ TEMPLATE = lib
 lang_en@flick.path = "$$UBUNTU_KEYBOARD_LIB_DIR/en@flick/"
 lang_en@flick.files = *.qml *.js
 
-INSTALLS += lang_en@flick
+lang_en@flick_keys.path = "$${UBUNTU_KEYBOARD_LIB_DIR}/keys"
+lang_en@flick_keys.files = keys/*.qml keys/*.js
+
+INSTALLS += lang_en@flick lang_en@flick_keys
 
 # for QtCreator
 OTHER_FILES += \
