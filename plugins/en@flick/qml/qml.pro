@@ -10,7 +10,11 @@ lang_en@flick.path = "$$UBUNTU_KEYBOARD_LIB_DIR/en@flick/"
 lang_en@flick.files = *.qml *.js
 
 lang_en@flick_keys.path = "$${UBUNTU_KEYBOARD_LIB_DIR}/keys"
-lang_en@flick_keys.files = keys/*.qml keys/*.js
+lang_en@flick_keys.files = keys/*.qml keys/*.js keys/*.svg
+
+lang_en@flick_layout.path = "$${UBUNTU_KEYBOARD_LIB_DIR}/languages"
+lang_en@flick_layout.files = languages/*.qml
+
 
 INSTALLS += lang_en@flick lang_en@flick_keys
 
